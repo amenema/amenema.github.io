@@ -3,17 +3,9 @@
   <component name="EslintConfiguration">
     <additional-rules-dir value="/usr/local/bin/node_modules/express-partials" />
   </component>
-  <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{Node.js v0.12.6 Core Modules}" />
-    <excludedPredefinedLibrary name="HTML" />
-    <excludedPredefinedLibrary name="HTML5 / EcmaScript 5" />
-  </component>
   <component name="JsBowerSettings">
     <exe-path />
     <config-path />
-  </component>
-  <component name="ProjectDictionaryState">
-    <dictionary name="menzhongxin" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -40,9 +32,6 @@
     <OptionsSetting value="true" id="Edit" />
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
-  </component>
-  <component name="TypeScriptCompiler">
-    <option name="isCompilerEnabled" value="true" />
   </component>
   <component name="masterDetails">
     <states>
