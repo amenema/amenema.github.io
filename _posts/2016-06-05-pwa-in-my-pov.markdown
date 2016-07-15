@@ -16,7 +16,7 @@ tags:
 
 ### [Watch Slides → ](https://amenema.github.io)
 
-<img src="https://amenema.github.io/pwa-in-my-pov/attach/qrcode.png" width="350" />
+<img src="https://amenema.github.io/pwa-in-my-pov/img/qrcode.png" width="350" />
 
 ### Catalog
 
