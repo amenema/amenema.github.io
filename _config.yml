@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 email: Men_zhong_xin@163.com
 description: "关于门忠鑫的博客,"
 keyword: "门忠鑫, Mzx, amenema, @amenema, 门忠鑫的博客, Mzx Blog, 博客, 个人网站, 互联网, 学习, Lucy, 格格, Lucy的男朋友"
-url: "http://amenemea.github.io"              # your host, for absolute URL
+url: "http://menzhongxin.com"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 
