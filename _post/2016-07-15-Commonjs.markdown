@@ -1,0 +1,84 @@
+#CommonJS规范
+---
+**CommonJS**分为1.0和1.1两个版本。  
+##### CommmonJS 1.0   
+* 模块上下文  
+	1. 在一个模块中，存在一个自由变量“**require**”函数
+		* 这个“**rquire**”函数接收一个模块标识符。
+		* “**rquire**”返回外部模块所输出的**API**。
+		* 如果出现依赖闭环(**dependency cycle**)，那么外部模块在被它的传递依赖(**transitive dependencies**)所**require**的时候可能并没有执行完成，这种情况下“**require**“返回的对象必须至少包含此外部模块在调用**require**函数之前就已经准备完毕的输出。
+		* 如果请求模块不能返回，那么”**require**“必须抛出一个错误。
+	2. 在一个模块中，存在一个名为”**exports**“的自由变量，它是一个对象，模块可以在执行的时候把自身**API**加入到其中。
+	3. 模块必须使用”**exports**“对象来作为输出的唯一表示。
+* 模块标示符
+	1. 模块标示符是一个由正斜杠分隔的”**terms**“组成的字符串。
+	2. 一个**term**的必须为驼峰样式标识符，或者为”.“或”..“。
+	3. 模块标识符可以省略文件名的后缀。比如”**.js**“
+	4. 模块标识符可以是相对路径(**relative**)或者绝对路径(**top-level**)。如果模块标识符的开头是”.“或者”..“则此模块标识符为相对路径。
+	5. 绝对路径必须是模块所在命名空间的根。
+	6. 相对路径必须是相对于当前**require**的模块。
+* 未规范   
+	此规范对于如下关于协同工作能力方面的重要内容未进行规范：
+	1. 模块是否可以通过数据库、文件系统或者工厂函数进行存储或者可以通过链接库进行内部交换。
+	2. 模块加载器是否应该支持**PATH**变量用来解析模块标识符。
+* 单元测试
+	* [**Unit Tests at Google Code**](http://code.google.com/p/interoperablejs/)  **by Kris Kowal**
+	* [**Unit Test Git Mirror**](http://github.com/ashb/interoperablejs/tree/master) **by Ash Berlin**
+* 示例代码
+	* **math.js**   
+	
+		```javascript
+		exports.add = function(){
+			var sum = 0 ,
+			i = 0 ,
+			args = arguments ,
+			1 = args.length;
+			while(i < 1){
+				sum += args[i++];
+			}
+			return sum;
+		};
+		```
+	* **increment.js**  
+	
+		```javascript
+		var add = require('math').add;
+		exports.increment = function(val){
+			return add(val,1);
+		}
+		```
+	* **program.js**
+	
+		```js
+		var inc = require('increment).increment;
+		var a = 1;
+		inc(a); //2
+		```	 
+##### CommonJS 1.1
+**CommonJS 1.1**与 **1.0**相比主要在 模块上下文(**Module Context**)部分增加了一些规范。   
+
+* 模块上下文  
+	1. 在一个模块中，存在一个自由变量“**require**”函数
+		* 这个“**rquire**”函数接收一个模块标识符。
+		* “**rquire**”返回外部模块所输出的**API**。
+		* 如果出现依赖闭环(**dependency cycle**)，那么外部模块在被它的传递依赖(**transitive dependencies**)所**require**的时候可能并没有执行完成，这种情况下“**require**“返回的对象必须至少包含此外部模块在调用**require**函数之前就已经准备完毕的输出。
+		* 如果请求模块不能返回，那么”**require**“必须抛出一个错误。
+		* **require**有一个只读的、不可删除的”**main**“属性。”**main**“相当于程序根目录的**module**。如果设置了该属性，则其必须和根目录的**module**指向相同的对象。
+		* **require**有个paths属性，该属性是一个具有优先秩序的路径数组，优先级从高到低，路径一直回朔到地根模块目录。
+			1. **paths**属性不会存在于沙盒中。
+			2. 在所有模块中**paths**的**attribute**均指向相同的值。
+			3. **paths**是无法被替换的。
+			4. 当**paths**的attribute存在时，修改**paths**的内容可能会导致模块无法被正确的搜索到。
+			5. 当**paths**的attribute存在时，它可能只包含了部分**path**,当模块加载器在使用这些路径之前或者之后，去检查其它的路径。
+			6. 当**paths**的attribute存在时,它是模块加载器使**paths**规范化、标准化的依据。
+	2. 在一个模块中，存在一个名为”**exports**“的自由变量，它是一个对象，模块可以在执行的时候把自身**API**加入到其中。
+		* 模块必须将**exports**作为导出对象的唯一工具。
+	3. 模块必须使用”**exports**“对象来作为输出的唯一表示。
+		* **module**对象有一个制度的、不可删除的id属性。当执行**require(module.id)**时，可以通过该id找到对应的**module**并返回**module exports**出的对象。
+		* 当创建一个**module**对象时，该对象可以有一个**URI**属性。该属性指向对应的模块源文件。该**URI**不存在于沙盒中。
+
+
+###### 附：
+原文链接:  
+	 [**Modules/1.0**](http://wiki.commonjs.org/wiki/Modules/1.0)     
+	 [**Modules/1.1**](http://wiki.commonjs.org/wiki/Modules/1.1)

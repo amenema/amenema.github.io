@@ -1,0 +1,24 @@
+# mac为词典添加生词本
+mac自带的词典没有生词本功能，使用起来颇为不顺手。于是找到如下解决方案。由于*Apple*在*OS X* 10.11中全面启动了名为*System Integrity Protection(SIP)*的系统完整性保护技术。受此影响，未经签名的第三方*kext*及经过修改的原版*kext*将无法正常加载。因为我们用到了*EasySIMBL*，所以需要先将*SIP*关掉。
+#### 准备工作
+1. *BetterDictionary*下载：[http://pooriaazimi.github.io/BetterDictionary/](http://pooriaazimi.github.io/BetterDictionary/)
+2. *EasySIMBL*下载：[https://github.com/norio-nomura/EasySIMBL](https://github.com/norio-nomura/EasySIMBL)
+
+#### 安装
+1. *OS X* 版本为10.11及以上
+	* 关闭 *SIP* : 重启系统，开机是按住*Command + r*,直到显示 *Appale logo* 为止，此时需等待大约一分钟才会进入*Recovery Mode*(恢复模式)。进入后单击右上角的**实用工具 > 终端**在终端下输入***csrutil disable***并回车，此时*SIP*已被关闭。重启电脑。  
+	
+	* 手动安装 *EasySIMBL* : 
+	`sudo installer -verbose -pkg Downloads/SIMBL-0.9.9/SIMBL-0.9.9.pkg -target /`
+`sudo rm -rf /System/Library/ScriptingAdditions/SIMBL.osax`
+`sudo mv /Library/ScriptingAdditions/SIMBL.osax /System/Library/ScriptingAdditions/`
+`sudo cp -p /System/Library/ScriptingAdditions/SIMBL.osax/Contents/Resources/SIMBL\ Agent.app/Contents/Resources/net.culater.SIMBL.Agent.plist /System/Library/LaunchAgents/`
+`sudo sed -e "s/Library/System\/Library/" -i "" /System/Library/LaunchAgents/net.culater.SIMBL.Agent.plist `
+	***Downloads/SIMBL-0.9.9/SIMBL-0.9.9.pkg*** **应改为你的电脑上对应的目录。**  
+	* 安装 *BetterDictionary* ：解压下载的文件，找到解压后的*Installers/BetterDictionary-0.992/Installers/BetterDictionary-0.99-macupdate/****BetterDictionary.bundle***文件，将该文件复制到*/Library/Application Support/SIMBL/Plugins*目录下。
+	* 关闭 *SIP* ：重启电脑，进入*Recovery Mode*(恢复模式)。在终端下输入***csrutil enable***，回车。重启电脑。至此生词本安装完毕。
+2. *OS X*版本在10.11以下
+	* 解压并安装*EasySIMBL*
+	* 运行*EasySIMBL*
+	* 勾选***Use SIMBL***
+	* 把解压出的*BetterDictionary.bundle*文件拖拽到*EasySIMBL*界面即可。
