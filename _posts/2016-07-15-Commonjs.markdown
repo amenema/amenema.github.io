@@ -9,6 +9,8 @@ catalog: true
 tags:
     - 前端
 ---
+
+
 #CommonJS规范
 
 **CommonJS**分为1.0和1.1两个版本。
