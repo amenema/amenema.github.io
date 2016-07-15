@@ -1,3 +1,14 @@
+---
+layout:     post
+title:      "node 模块循环依赖"
+subtitle:   ""
+date:       2016-07-15 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - NODE
+---
 # node 模块循环依赖
 ----
 **nodejs**通过**require**加载依赖**module**，当两个**module**相互引用时，就会出现循环依赖问题。具体请看如下示例：  

@@ -1,3 +1,14 @@
+---
+layout:     post
+title:      "CommonJS规范"
+subtitle:   " \"中文翻译\""
+date:       2016-07-15 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - 前端
+---
 #CommonJS规范
 ---
 **CommonJS**分为1.0和1.1两个版本。  

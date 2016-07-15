@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      "mac为词典添加生词本"
+subtitle:   ""
+date:       2016-07-15 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - OSX
+---
+
 # mac为词典添加生词本
 mac自带的词典没有生词本功能，使用起来颇为不顺手。于是找到如下解决方案。由于*Apple*在*OS X* 10.11中全面启动了名为*System Integrity Protection(SIP)*的系统完整性保护技术。受此影响，未经签名的第三方*kext*及经过修改的原版*kext*将无法正常加载。因为我们用到了*EasySIMBL*，所以需要先将*SIP*关掉。
 #### 准备工作
