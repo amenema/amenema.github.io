@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd9204d4-727e-4e91-88b0-b77680d7f957" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2016-07-15-node 模块循环依赖.markdown" afterPath="$PROJECT_DIR$/_posts/2016-07-15-node 模块循环依赖.markdown" />
     </list>
     <ignored path="amenema.github.io.iws" />
@@ -37,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2016-07-15-node 模块循环依赖.markdown">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.47136563">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -546,7 +547,7 @@
     <entry file="file://$PROJECT_DIR$/_posts/2016-07-15-node 模块循环依赖.markdown">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47136563">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
