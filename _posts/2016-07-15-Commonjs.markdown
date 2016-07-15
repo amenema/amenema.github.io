@@ -43,35 +43,35 @@ tags:
 
 	* **math.js**   
 
-  ```js
-  exports.add = function(){
-    var sum = 0 ,
-    i = 0 ,
-    args = arguments ,
-    1 = args.length;
-    while(i < 1){
-      sum += args[i++];
-    }
-    return sum;
-  };
-  ```
-	* **increment.js**   
-
-	  
-	```js
-	var add = require('math').add;
-	exports.increment = function(val){
-		return add(val,1);
-	}
-	```
-	* **program.js**
-
+      ```js
+      exports.add = function(){
+        var sum = 0 ,
+        i = 0 ,
+        args = arguments ,
+        1 = args.length;
+        while(i < 1){
+          sum += args[i++];
+        }
+        return sum;
+      };
+      ``` 
+      
+	* **increment.js**     
 	
-	```js
-	var inc = require('increment).increment;
-	var a = 1;
-	inc(a); //2
-	```
+      ```js
+      var add = require('math').add;
+      exports.increment = function(val){
+        return add(val,1);
+      };
+      ``` 
+       
+	* **program.js**
+        
+      ```js
+        var inc = require('increment).increment;
+        var a = 1;
+        inc(a); //2
+      ```
 
 ##### CommonJS 1.1
 
