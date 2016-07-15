@@ -30,7 +30,7 @@ var a = require('./a'); //b-step 1
 console.log('in b the module a.value is:' + a.value); //b-step 2
 module.exports.value = 'b'; //b-step 3
 ```
-#####结果  
+##### 结果
 
 ```
 /usr/local/bin/node a.js
@@ -40,8 +40,9 @@ in a the module b.value is:b
 
 之所以出现如下结果是因为**node**是按如下步骤执行的。
 a-step 1 --> b-step 1 --> b-step 2 --> b-step 3 --> a-step 2 --> a-step 3   
-当**node**执行**a.js**时，**node**为**a.js**创建了一个**module object**并加入到**cache**中。然后从上往下执行**a.js**中的代码。当执行到 **a-step 1** 时，就会加载**b.js**的代码，并执行。当执行到**b-step 1**时,因为**a.js**已经被创建并加入到**cache**中，所以直接从**cache**中取出对应的**module**。但是此时**cache**中的**a module**并未将**a**中要导出的属性导出去(此时还未执行到**a.js**)。所以此时在**b**中的**a**并未对**value**进行定义。故当执行到**b-step 2**时，**a.value**为**undefined**。当执行到**b-step 3**时,给**module b**添加**value**属性并赋值。至此**module a**已经将**module b**引入。接着往下继续执行。  
-#####解决方式
+当**node**执行**a.js**时，**node**为**a.js**创建了一个**module object**并加入到**cache**中。然后从上往下执行**a.js**中的代码。当执行到 **a-step 1** 时，就会加载**b.js**的代码，并执行。当执行到**b-step 1**时,因为**a.js**已经被创建并加入到**cache**中，所以直接从**cache**中取出对应的**module**。但是此时**cache**中的**a module**并未将**a**中要导出的属性导出去(此时还未执行到**a.js**)。所以此时在**b**中的**a**并未对**value**进行定义。故当执行到**b-step 2**时，**a.value**为**undefined**。当执行到**b-step 3**时,给**module b**添加**value**属性并赋值。至此**module a**已经将**module b**引入。接着往下继续执行。
+
+##### 解决方式
 1. 出现循环依赖时，主要问题是先被执行的**module**在后执行的**module**不是一个完整的**module**(**a**先加载,**b**后加载)。举例来说，即，将**a**中的**a-step 3**移到**a-step 1**之上。
 2. 如果出现循环依赖最好还是重构代码避免循环依赖的出现。方法1只是一个临时的方法。
 
