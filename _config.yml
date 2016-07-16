@@ -10,7 +10,7 @@ baseurl: ""                             # for example, '/blog' if your blog host
 
 
 #qiniu cdn
-qiniu: "http://7xwfcm.com1.z0.glb.clouddn.com"
+qiniu: "http://7xwfcm.com2.z0.glb.qiniucdn.com"
 qiniu_img: "http://7xwfcm.com1.z0.glb.clouddn.com/img/"
 qiniu_css: "http://7xwfcm.com1.z0.glb.clouddn.com/css/"
 qiniu_js: "http://7xwfcm.com1.z0.glb.clouddn.com/js/"
