@@ -1,89 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bd9204d4-727e-4e91-88b0-b77680d7f957" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/hux-blog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/hux-blog.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/css/syntax.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/404-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/about-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/avatar-hux.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/avatar-sea-hux.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/blog-desktop.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/blog-keynote.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/blog-md-navbar.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/blog-sidebar.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/contact-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/home-bg-art.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/home-bg-geek.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/home-bg-o.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/home-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/icon_wechat.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/forcify.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/open-source-license.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.013.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.014.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.016.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.018.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.019.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.020.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.021.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.023.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.026.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.028.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.029.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.030.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-alitrip-pd/post-alitrip-pd.031.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-c-u-ali-079717.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-c-u-ali-memo.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-c-u-ali-team.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-js-version/javascript-java.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-js-version/keep-calm-and-learn-javascript.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-kuaidi-1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-kuaidi-2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-metro-panorama.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-metro-real.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/in-post/post-metro-ui.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-2015.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-alibaba.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-alitrip.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-android.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-apple-event-2015.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-digital-native.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-e2e-ux.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-ios9-web.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-js-module.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-js-version.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-kuaidi.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-miui-ux.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-miui6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-os-metro.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-re-vs-ng2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-rwd.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-see-u-ali.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-universe.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-bg-unix-linux.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/post-sample-image.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/qrcode.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/tag-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/animatescroll.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/hux-blog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/hux-blog.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery.nav.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery.tagcloud.js" afterPath="" />
-    </list>
+    <list default="true" id="bd9204d4-727e-4e91-88b0-b77680d7f957" name="Default" comment="" />
     <ignored path="amenema.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -269,20 +187,6 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="amenema.github.io">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="amenema.github.io">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="less">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
