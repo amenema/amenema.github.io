@@ -6,6 +6,8 @@ date:       2016-07-15 12:00:00
 author:     "Mzx"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
+keyword: CommonJS,commonjs,js,中文翻译
+description: CommonJS规范中文翻译
 tags:
     - Standard
 ---
