@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd9204d4-727e-4e91-88b0-b77680d7f957" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_includes/head.html" afterPath="$PROJECT_DIR$/_includes/head.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="amenema.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,12 +39,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="head.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="head.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_includes/head.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.018867925">
+            <state vertical-scroll-proportion="13.333333">
               <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_includes/footer.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.1632652">
+              <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+              <folding>
+                <element signature="n#footer#0;n#!!top" expanded="false" />
+                <element signature="e#5298#5559#0" expanded="false" />
+                <element signature="e#5571#6058#1" expanded="false" />
+                <element signature="e#6059#6331#1" expanded="false" />
+                <marker date="1468739899000" expanded="true" signature="4933:4940" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,9 +96,9 @@
         <option value="$PROJECT_DIR$/_layouts/default.html" />
         <option value="$PROJECT_DIR$/CNAME" />
         <option value="$PROJECT_DIR$/_config.yml" />
-        <option value="$PROJECT_DIR$/_includes/footer.html" />
         <option value="$PROJECT_DIR$/_posts/2016-07-15-源码解读-Module.js.markdown" />
         <option value="$PROJECT_DIR$/_includes/head.html" />
+        <option value="$PROJECT_DIR$/_includes/footer.html" />
       </list>
     </option>
   </component>
@@ -392,10 +408,10 @@
           <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
           <folding>
             <element signature="n#footer#0;n#!!top" expanded="false" />
-            <element signature="e#5284#5545#0" expanded="false" />
-            <element signature="e#5557#6044#1" expanded="false" />
-            <element signature="e#6045#6317#1" expanded="false" />
-            <marker date="1468725879000" expanded="true" signature="4920:4927" placeholder="{...}" />
+            <element signature="e#5298#5559#0" expanded="false" />
+            <element signature="e#5571#6058#1" expanded="false" />
+            <element signature="e#6059#6331#1" expanded="false" />
+            <marker date="1468739899000" expanded="true" signature="4933:4940" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -430,10 +446,10 @@
           <caret line="174" column="0" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
           <folding>
             <element signature="n#footer#0;n#!!top" expanded="false" />
-            <element signature="e#5284#5545#0" expanded="false" />
-            <element signature="e#5557#6044#1" expanded="false" />
-            <element signature="e#6045#6317#1" expanded="false" />
-            <marker date="1468725879000" expanded="true" signature="4920:4927" placeholder="{...}" />
+            <element signature="e#5298#5559#0" expanded="false" />
+            <element signature="e#5571#6058#1" expanded="false" />
+            <element signature="e#6059#6331#1" expanded="false" />
+            <marker date="1468739899000" expanded="true" signature="4933:4940" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -673,20 +689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_includes/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6352041">
-          <caret line="106" column="31" selection-start-line="106" selection-start-column="31" selection-end-line="106" selection-end-column="31" />
-          <folding>
-            <element signature="n#footer#0;n#!!top" expanded="false" />
-            <element signature="e#5284#5545#0" expanded="false" />
-            <element signature="e#5557#6044#1" expanded="false" />
-            <element signature="e#6045#6317#1" expanded="false" />
-            <marker date="1468725879000" expanded="true" signature="4920:4927" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CNAME">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -724,9 +726,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_includes/head.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.018867925">
+        <state vertical-scroll-proportion="13.333333">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_includes/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.1632652">
+          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+          <folding>
+            <element signature="n#footer#0;n#!!top" expanded="false" />
+            <element signature="e#5298#5559#0" expanded="false" />
+            <element signature="e#5571#6058#1" expanded="false" />
+            <element signature="e#6059#6331#1" expanded="false" />
+            <marker date="1468739899000" expanded="true" signature="4933:4940" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
