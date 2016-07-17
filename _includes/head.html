@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ page.description|site.description }}">
     <meta name="keywords"  content="{{ page.keyword|site.keyword }}">
-    <meta name="baidu-site-verification" content="hKPy5qm68c" />
     <link rel="shortcut icon" href="{{ site.qiniu }}/img/favicon.ico">
     <link rel="bookmark" href="{{ site.qiniu }}/img/favicon.ico" type="image/x-icon"　/>
 
@@ -43,5 +42,17 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>    <![endif]-->
 
     <!-- ga & ba script hoook -->
-    <script></script>
+    <!-- Google Analytics -->
+    <script  type = "text/javascript" >
+    var _gaq = _gaq ||  [];
+    _gaq . push ([ '_setAccount' ,  'UA-80815064-1' ]);
+    _gaq . push ([ '_trackPageview' ]);
+
+    ( function ()  {
+        var ga = document . createElement ( 'script' ); ga . type =  'text/javascript' ; ga . async =  true ;
+        ga . src =  ( 'https:'  == document . location . protocol ?  'https://ssl'  :  'http://www' )  +  '.google-analytics.com/ga.js' ;
+        var s = document . getElementsByTagName ( 'script' )[ 0 ]; s . parentNode . insertBefore ( ga , s );
+    })();
+
+    </script>
 </head>
