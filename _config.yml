@@ -65,7 +65,7 @@ duoshuo_share: true                     # set to false if you want to use Commen
 # Baidu Analytics
 ba_track_id: 689990cf564b0e900775c4907dd9ef4b
 # Google Analytics
-#ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+#ga_track_id: 'UA-80815064-1'            # Format: UA-xxxxxx-xx
 #ga_domain: amenema.github.io
 
 
