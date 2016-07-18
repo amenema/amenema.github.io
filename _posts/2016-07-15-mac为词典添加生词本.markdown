@@ -24,16 +24,13 @@ mac自带的词典没有生词本功能，使用起来颇为不顺手。于是�
 1. *OS X* 版本为10.11及以上
 	* 关闭 *SIP* : 重启系统，开机是按住*Command + r*,直到显示 *Appale logo* 为止，此时需等待大约一分钟才会进入*Recovery Mode*(恢复模式)。进入后单击右上角的**实用工具 > 终端**在终端下输入***csrutil disable***并回车，此时*SIP*已被关闭。重启电脑。  
 	
-	* 手动安装 *EasySIMBL*   
-	
-		```bash
-		sudo installer -verbose -pkg Downloads/SIMBL-0.9.9/SIMBL-0.9.9.pkg -target /
-		sudo rm -rf /System/Library/ScriptingAdditions/SIMBL.osax`
-		sudo mv /Library/ScriptingAdditions/SIMBL.osax /System/Library/ScriptingAdditions/
-		sudo cp -p /System/Library/ScriptingAdditions/SIMBL.osax/Contents/Resources/SIMBL\Agent.app/Contents/Resources/net.culater.SIMBL.Agent.plist /System/Library/LaunchAgents/
-		sudo sed -e "s/Library/System\/Library/" -i "" /System/Library/LaunchAgents/net.culater.SIMBL.Agent.plist 
-		```
-	
+	* 手动安装 *EasySIMBL* : 
+	`sudo installer -verbose -pkg Downloads/SIMBL-0.9.9/SIMBL-0.9.9.pkg -target /`
+`sudo rm -rf /System/Library/ScriptingAdditions/SIMBL.osax`
+`sudo mv /Library/ScriptingAdditions/SIMBL.osax /System/Library/ScriptingAdditions/`
+`sudo cp -p /System/Library/ScriptingAdditions/SIMBL.osax/Contents/Resources/SIMBL\ Agent.app/Contents/Resources/net.culater.SIMBL.Agent.plist /System/Library/LaunchAgents/`
+`sudo sed -e "s/Library/System\/Library/" -i "" /System/Library/LaunchAgents/net.culater.SIMBL.Agent.plist `
+
 	***Downloads/SIMBL-0.9.9/SIMBL-0.9.9.pkg*** **应改为你的电脑上对应的目录。**  
 	* 安装 *BetterDictionary* ：解压下载的文件，找到解压后的*Installers/BetterDictionary-0.992/Installers/BetterDictionary-0.99-macupdate/****BetterDictionary.bundle***文件，将该文件复制到*/Library/Application Support/SIMBL/Plugins*目录下。
 	* 关闭 *SIP* ：重启电脑，进入*Recovery Mode*(恢复模式)。在终端下输入***csrutil enable***，回车。重启电脑。至此生词本安装完毕。
