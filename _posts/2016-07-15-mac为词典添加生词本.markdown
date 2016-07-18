@@ -27,6 +27,8 @@ mac自带的词典没有生词本功能，使用起来颇为不顺手。于是�
 	
 	* 手动安装 *EasySIMBL* : 
 	
+	
+	
 	```
 	sudo installer -verbose -pkg Downloads/SIMBL-0.9.9/SIMBL-0.9.9.pkg -target /
 	
