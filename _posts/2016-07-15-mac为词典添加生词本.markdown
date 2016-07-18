@@ -33,7 +33,7 @@ mac自带的词典没有生词本功能，使用起来颇为不顺手。于是�
 
 	`sudo mv /Library/ScriptingAdditions/SIMBL.osax /System/Library/ScriptingAdditions/`
 	
-`sudo cp -p /System/Library/ScriptingAdditions/SIMBL.osax/Contents/Resources/SIMBL\ Agent.app/Contents/Resources/net.culater.SIMBL.Agent.plist /System/Library/LaunchAgents/`
+	`sudo cp -p /System/Library/ScriptingAdditions/SIMBL.osax/Contents/Resources/SIMBL\ Agent.app/Contents/Resources/net.culater.SIMBL.Agent.plist /System/Library/LaunchAgents/`
 
 	`sudo sed -e "s/Library/System\/Library/" -i "" /System/Library/LaunchAgents/net.culater.SIMBL.Agent.plist `
 
