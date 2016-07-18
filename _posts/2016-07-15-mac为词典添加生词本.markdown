@@ -30,6 +30,7 @@ mac自带的词典没有生词本功能，使用起来颇为不顺手。于是�
 	
 	
 	```
+	
 	sudo installer -verbose -pkg Downloads/SIMBL-0.9.9/SIMBL-0.9.9.pkg -target /
 	
 	sudo rm -rf /System/Library/ScriptingAdditions/SIMBL.osax
@@ -38,7 +39,8 @@ mac自带的词典没有生词本功能，使用起来颇为不顺手。于是�
 	
 	sudo cp -p /System/Library/ScriptingAdditions/SIMBL.osax/Contents/Resources/SIMBL\ Agent.app/Contents/Resources/net.culater.SIMBL.Agent.plist /System/Library/LaunchAgents/
 
-	sudo sed -e "s/Library/System\/Library/" -i "" /System/Library/LaunchAgents/net.culater.SIMBL.Agent.plist 
+	sudo sed -e "s/Library/System\/Library/" -i "" /System/Library/LaunchAgents/net.culater.SIMBL.Agent.plist
+	 
 	```
 
 	***Downloads/SIMBL-0.9.9/SIMBL-0.9.9.pkg*** **应改为你的电脑上对应的目录。**  
