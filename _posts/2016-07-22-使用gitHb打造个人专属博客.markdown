@@ -1,0 +1,88 @@
+---
+layout:     post
+title:      "利用github pages,Jeyll打造个人专属博客"
+subtitle:   " \"使用github pages服务和Jeyll搭建一个不限流量的个人博客\""
+date:       2016-07-22 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: gitHub pages,blog,Jekyll,专属博客,博客
+description: 使用github pages服务和Jeyll搭建一个不限流量的个人博客，并实现被百度收录。
+tags:
+    - github
+    - Jekyll
+---
+
+
+# 利用**github**打造个人专属博客
+当你浏览大牛的个人站点时，是否有过搭建一个属于自己的博客的欲望？当你搜索某**bug**的解决方法时，是否发现很多都是一些老旧的或者讲解不够彻底明白的文章，此时有木有想自己写一篇准确详实**blog**供后人乘凉？不管你是否有此想法，既来之者安之，接下来看我们如何利用**github**打造一个个人专属**blog**。  
+##**step 1** 注册github,并创建一个新的仓库(**repository**)
+方法如图：
+
+![create](http://7xwfcm.com2.z0.glb.qiniucdn.com/img/blog_page_1.png)
+
+**注意：**
+
+* repository的名字必须为**"owner".github.io**。只有这个样才会被**github pages**服务识别，因为我已经创建过一个同名的**repository**，所以这里提示我已经存在。
+* Add .gitignore :这个是添加提交代码到**github**时，需要忽略的内容。因为有些内容是个性化的，不适合提交到**repository**。
+
+以上操作都完成后点击**Create repository**。在你的**repository**里添加一个新的文件，名字为：“**index.html**”。随便写点内容。操作如图：
+![add index.html](http://7xwfcm.com2.z0.glb.qiniucdn.com/img/blog_img_2.png)
+![edit index.html](http://7xwfcm.com2.z0.glb.qiniucdn.com/img/blog_img_3.png)
+![create index.html](http://7xwfcm.com2.z0.glb.qiniucdn.com/img/blog_img_4.png)
+**注意：** 上图第一幅图里边的内容刚创建是不存在的。
+
+添加完成后，在**respository**里会出现一个名为**index.html**的文件。在浏览器里输入**amenema.github.io**，就会显示出**index.html**的内容。此时你的专属blog已经完成一半了。
+##**step 2** 使用Jeyll美化你的blog
+**Jeyll**是一个静态站点生成器。可以理解为一个服务器。它能够运行在**github**上。配置好**Jeyll**后，我们就可以专注于内容，而不需要操心页面的样式等问题了。  
+使用**Jeyll**最简单的方法，就是下载他的[主题](http://jekyllthemes.org/)。选择一个你喜欢的主题，只需要少量配置，上传到**github**就可以开始写**blog**。  
+我们以[**jekllDecent**](http://jekyllthemes.org/themes/jekyllDecent/)这个主题为例，讲解一下，大概如何配置主题。
+下载该主题并解压后我们可以看看文件夹里都有神马东西呢？
+![jeyllDecent](http://7xwfcm.com2.z0.glb.qiniucdn.com/img/blog_img_5.png)    
+
+* **_config.xml** : **Jeyll**的配置文件，里边有些信息需要改成我们自己的
+* **_data** : 这里边包含了一些基础配置信息，跟 **_config.xml**类似。有的主题没有。
+* **_includes, _layouts** : 这里边是主题的**html**页面。一般不需要改动。
+* **_pages** : 这里边是页面的具体内容，如 **about.md**等，需要改成自己的信息。
+* **_posts** : 这里边是放博客内容的地方。采用**markdown**编写。在文件命名是有一个要求，就是必须是“2016-01-01-myblog.md”格式。前边是日期。后边是博客的名称。只有这样才能被**Jeyll**识别。识别后的标题会去掉前边的日期。只显示后边的博客名称。
+* **favicon.ico** : 是网站的icon,他会显示在浏览器的标题栏上。文件不需要太大。一般32*32px就可以，太大加载缓慢。
+* **404.html, index.html** : 这两个页面分别是网站的404页面和首页。
+* **robots.txt** : 这个文件是用来指示爬虫爬取网站的，如果不知道如何使用请删掉，删掉后并不影响网站。
+* 剩余内容 : 上图中没有在这里列出来的内容都是一些基本不需要修改的信息。如样式表，**js**等。
+
+将主题信息修改完成后就可以上传到**github**了。然后看看还有什么没有修改的地方，有什么错误等等。
+
+至此我们的blog已经搭建完成了。只要在**_post**里边使用**markdwn**写文章就可以了。
+
+
+#**step 3** 绑定域名
+目前你的博客的网址是**github**的二级域名。如果想拥有一个个性化的域名。可以申请一个域名并将域名绑定到博客上。那么如何将域名绑定到你的**blog**呢？  
+首先登录[DNSPOD](https://www.dnspod.cn)。依次点击：“域名解析”-->"添加域名"。输入要绑定的域名并提交。
+然后点击域名列表里的域名进入域名解析配置页。分别添加两条记录。  如图所示
+![dnspod](http://7xwfcm.com2.z0.glb.qiniucdn.com/img/blog_img_6.png)    
+
+**注意** :  
+
+* 线路类型选择“默认”，记录类型选择“CNAME”，记录值填写你的**blog**地址。
+* 主机记录分别填写 “@” 和 “www”
+* 在你的项目根目录下新建一个名为“CNAME”的文件，不要任何后缀名。然后写上你的域名。不要带“www”。然后提交到github。
+
+这样访问你的域名就可以跳转到你的博客上了。
+
+#**step 4** 被百度爬取
+
+**github**屏蔽了来自百度的爬虫。所以我们的博客是无法被百度收录的。即别人无法通过百度搜索到你的博客。那么该如何解决呢。
+
+有一种比较简单的方法是上传一份代码到[coding.net](https://www.coding.net)。我目前采用的就是这种方法。coding.net是国内的一款项目管理。demo演示平台。也提供了类似**github**的服务。  
+其实也可以直接将**blog**搭建在[码市](https://www.coding.net)上。他也提供了**page**服务，搭建方法与**github**相同。不过有一点区别是**github**是将代码放到**master**。而码市则是将代码放到**coding-pages**分支上。具体使用方法请参见使用说明：[coding.net pages 使用说明](https://coding.net/help/doc/pages/index.html)  
+提交代码以后我们需要将百度的访问路径映射到这个网址上。这就需要我们在**dnspod**上添加两条记录。主机记录和记录类型和之前绑定域名时添加的内容相同。不同的是“线路类型”均选择“百度”，记录值填写为**coding.net**提供的网址。如我的网址为[amenema.coding.me](http://amenema.coding.me/)。   
+
+# **step 5** 添加评论插件
+目前我用的评论插件是[多说](http://duoshuo.com)。使用方法很简单。注册账号。将评论代码复制到需要添加评论的页面即可。
+# **step 6** 性能优化
+其实通过域名绑定后我们的博客性能已经非常好了。但是还可以做的更好一些。主要体现在一些图片。css/js的优化上。  
+1. 将一些第三方的js/css文件改为引用开源的CDN平台提供的网址。我目前使用的是[bootCDN](http://www.bootcdn.cn/)  
+2. 将个人的js、css、图片等放到[七牛](http://www.qiniu.com/)上。
+
+# 结语
+至此你便拥有了一个专属个人的**blog**。文章内容如有不当之处欢迎斧正。
