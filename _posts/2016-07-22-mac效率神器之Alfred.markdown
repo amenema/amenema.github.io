@@ -50,16 +50,20 @@ tags:
 大框中的代码请参考这个地址：[https://github.com/stuartcryan/custom-iterm-applescripts-for-alfred](https://github.com/stuartcryan/custom-iterm-applescripts-for-alfred)
 
 ##  **workflow**  
-这里允许你安装第三方的插件来丰富**Alfred**的功能。如天气查询、快递查询、有道翻译等。当然你也可以定义自己的**workflow**。这个地址是大牛们贡献的**workflow**。地址：[http://www.alfredworkflow.com/](http://www.alfredworkflow.com/)。下载后，直接双击安装即可。  
+这里允许你安装第三方的插件来丰富**Alfred**的功能。如天气查询、快递查询、有道翻译等。当然你也可以定义自己的**workflow**。这个地址是大牛们贡献的**workflow**。地址：[http://www.alfredworkflow.com/](http://www.alfredworkflow.com/)。下载后，直接双击安装即可。
+  
 ##  **appearance**  
 这里主要配置**Alfred**的外观。可以自己定制。  
+
 ##  **advanced**   
-这里是设置**Alfred**对搜索记录等进行设置。你可以让它记住你的搜索历史。可以让她记住某个关键词对应哪个软件，下次输入该关键词时，那么该软件的排序将会提高。  
+这里是设置**Alfred**对搜索记录等进行设置。你可以让它记住你的搜索历史。可以让她记住某个关键词对应哪个软件，下次输入该关键词时，那么该软件的排序将会提高。   
+
 ##  **remote**    
 如果你的**ios**上也安装了**Alfred**，那么你就可以在这里开启**remote**通过手机远程控制你的电脑了。
 
 ## 结语
-当你看到这里的时候如果你发现你还没有一台**Mac**,那么赶紧买一台去吧。
+当你看到这里的时候如果你发现你还没有一台**Mac**,那么赶紧买一台去吧。  
+
 ## 附：
 [1] : Alfred下载地址 [https://www.alfredapp.com/](https://www.alfredapp.com/)  
 [2] : Alfred破解版下载地址 [https://pan.baidu.com/s/1pLKnUx9](https://pan.baidu.com/s/1pLKnUx9)
