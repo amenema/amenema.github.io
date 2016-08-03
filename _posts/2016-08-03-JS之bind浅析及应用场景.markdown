@@ -1,0 +1,105 @@
+---
+layout:     post
+title:      "JS之bind浅析及应用场景"
+subtitle:   " \"bind()函数的简单应用\""
+date:       2016-08-03 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: JS,bind,js,bind(),应用场景,例子
+description: 本文描述了Function.protoptype.bind()方法的使用方式，适合的应用场景。
+tags:
+    - Javascript
+---
+
+
+# JS之bind浅析及应用场景    
+
+> 在**JavaScript**中，**bind**、**call**、**apply**、是**Function**提供的三个方法。三个方法的共同之处就是都能够改变对**this**的引用。接下来我们将通过几个简单例子浅析**bind**的应用场景。  
+
+## 语法
+**fn.bind(obj, args)**  
+**bind()**方法会创建一个函数，该函数的**this**指向了传入的第一个参数，当**bind()**的参数为空时，**this**指向全局对象。如浏览器中的**window**。  
+
+## 示例  
+### 绑定函数   
+
+```js
+	var hello = function(){
+		console.log(this.name);
+	};
+	
+	var demo = {
+		name: 'demo'
+	};
+	
+	var h = hello.bind(demo);
+	h(); // out 'demo'
+	
+```
+
+```js
+	name = 'global';
+	
+	var hello = function(){
+		console.log(this.name);
+	};
+	
+	var h = hello.bind();
+	h(); // out 'global';
+```   
+因为**js**是一门**Duck typing**语言，所以我们可以通过**bind**实现一些共有方法。 
+
+```js
+	var fly = function(){
+	  //fly
+	  console.log('I am a ' + this.name + ', I can fly');
+	};
+	
+	var bird = {
+	  name: 'bird'
+	};
+	var plane = {
+	  name: 'plane'
+	};
+	
+	fly.bind(bird)(); //I am a bird, I can fly
+	fly.bind(plane)();//I am a plane, I can fly
+```  
+
+### 给参数指定默认参数   
+
+```js
+	var hello = function(job, name){
+  		console.log('hello, my job is ' + job + ', my name is ' + name);
+	};
+
+	var h = hello.bind(undefined, 'coder');
+	h('Tom'); // hello, my job is coder, my name is Tom
+```
+
+### 快捷调用 
+有的时候我们需要针对特定的**this**调用某些方法。写起来比较麻烦，这个时候就可以使用**bind**创建一个**shortcut**方便调用。  
+
+```js
+//另一种调用bind的方式
+var bind = Function.prototype.call.bind(Function.prototype.bind);
+
+var hello = function(){
+  console.log(this.name);
+};
+
+var boo = {
+  name: 'boo'
+};
+
+bind(hello, boo)();
+/** 解析
+Function.prototype.bind.call(hello, boo) == hello.bind(boo);
+bind = Function.prototype.call.bind(Function.prototype.bind) == Function.prototype.bind.call;
+bind(hello, boo) == Function.prototype.bind.call(hello, boo) == hello.bind(boo);
+*/
+```
+
+### 绑定构造函数   
+**bind**也可以绑定构造函数，但是当执行生成的函数时，会忽略this指向，即使在绑定时已经对其赋值。

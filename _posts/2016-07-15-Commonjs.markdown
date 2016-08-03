@@ -7,7 +7,7 @@ author:     "Mzx"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
 keyword: CommonJS,commonjs,js,中文翻译
-description: CommonJS规范中文翻译
+description: commonjs的中文版，本文翻译了CommonJS的1.0和1.1两个版本，并对做简单的对比
 tags:
     - Standard
 ---
