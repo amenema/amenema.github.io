@@ -18,8 +18,8 @@ qiniu_js: "http://7xwfcm.com1.z0.glb.clouddn.com/js/"
 # SNS settings
 RSS: false
 #weibo_username:     amenema
-zhihu_username:     amenema
-github_username:    amenema
+zhihu_username:    
+github_username:
 #twitter_username:  amemea
 #facebook_username:  amemea
 # linkedin_username:  firstname-lastname-idxxxx

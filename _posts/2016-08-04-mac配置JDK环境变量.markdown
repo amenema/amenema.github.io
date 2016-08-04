@@ -1,0 +1,92 @@
+---
+layout:     post
+title:      "mac配置JDK环境变量"
+subtitle:   ""
+date:       2016-08-04 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: Java,jdk,mac,osx,环境变量,系统
+description: 作为一名Javaer要做的第一件事情就是学习如何配置环境变量，本文将简单介绍如何在mac下配置java的环境变量。
+tags:
+    - Javascript
+---
+
+
+> 作为一名**Javaer**要做的第一件事情可能就是搭建一个**Java**的运行环境。其中主要的问题就是环境变量的配置。在**window**下配置Java的环境变量相对是比较简单的。**mac**下相对就麻烦些，特别是之前没有接触过***nux**系统的同学，往往是一脸懵逼。接下来我们将简单介绍如何在**mac**下搭建一个**Java**的可执行环境。     
+
+## 下载安装  
+
+[JDK各版本的官网下载地址](http://www.oracle.com/technetwork/java/archive-139210.html)   
+
+## 配置环境变量  
+下载需要的**JDK**版本并安装完成后就可以配置了，配置**JDK**分两种方式。一种是“全局配置”，另一种是“为当前用户配置”。   
+
+### 全局配置   
+
+全局配置需要修改的是 **/etc/profile**文件,**mac**下有个**/etc/bashrc**文件，相当于全局文件，所以可以在**/etc/bashrc**中配置
+
+
+```
+//step 1
+sudo vi /etc/profile //或者 sudo vi /etc/bashrc  
+
+//step 2 在profile文件中添加如下内容
+## java_home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$JAVA_HOME/bin:$PATH
+
+//step 3
+添加完毕之后，按esc退出插入模式，并键入wq!保存退出文件
+
+//step 4 让配置立即生效
+source /etc/profile
+
+```  
+
+**Java** 的默认安装路径是**/Library/Java/JavaVirtualMachines**
+
+
+### 为当前用户配置  
+
+```
+//step 1 切换到当前用户的目录下,并打开.bash_profile
+cd /Users/yourName
+vi .bash_profile
+
+//setp 2 在.bash_profile文件中添加如下内容
+## java_home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$JAVA_HOME/bin:$PATH
+
+//step 3
+添加完毕之后，按esc退出插入模式，并键入wq!保存退出文件
+
+//step 4 让配置立即生效
+source .bash_profile
+```   
+
+### 配置多个**JDK**
+
+如果需要不同的**JDK**版本，可以参考如下配置，配置方式相同，只是添加到文件的内容不同
+
+```
+//系统安装的jdk
+export JAVA_7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home
+export JAVA_8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
+export JAVA_HOME=$JAVA_7_HOME //指向默认的jdk路径
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$JAVA_HOME/bin:$PATH
+```   
+
+配置好多个环境变量后，通过如下方法即可进行切换  
+
+```
+java -version //查看Java版本
+export JAVA_HOME=JAVA_8_HOME //切换jdk版本
+java -version //查看Java版本
+```
+
+ 
