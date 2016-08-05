@@ -9,7 +9,8 @@ catalog: true
 keyword: Java,jdk,mac,osx,环境变量,系统
 description: 作为一名Javaer要做的第一件事情就是学习如何配置环境变量，本文将简单介绍如何在mac下配置java的环境变量。
 tags:
-    - Javascript
+    - Java
+    - OSX
 ---
 
 
