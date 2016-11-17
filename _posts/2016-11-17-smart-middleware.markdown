@@ -17,6 +17,7 @@ tags:
 #  smart-middleware
 > smart-middleware 是 koa下的一个用于自动加载路由，并自动根据配置好的规则批准路由对应中间件的中间件。  
 
+
 [![Travis](https://img.shields.io/badge/npm-0.1.1-brightgreen.svg?style=flat-square)](https://www.npmjs.com/package/smart-middleware)[![Build Status](https://travis-ci.org/amenema/smart-middleware.svg?branch=master)](https://travis-ci.org/amenema/smart-middleware)[![Coverage Status](https://coveralls.io/repos/github/amenema/smart-middleware/badge.svg?branch=master)](https://coveralls.io/github/amenema/smart-middleware?branch=master)[![npm](https://img.shields.io/npm/l/express.svg?style=flat-square)](https://github.com/amenema/smart-middleware/https://github.com/amenema/smart-middleware/blob/master/LICENSE)
  
 ## 项目地址
