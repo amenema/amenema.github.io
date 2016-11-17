@@ -17,10 +17,7 @@ tags:
 #  smart-middleware
 > smart-middleware 是 koa下的一个用于自动加载路由，并自动根据配置好的规则批准路由对应中间件的中间件。  
 
-[![Travis](https://img.shields.io/badge/npm-0.1.1-brightgreen.svg?style=flat-square)](https://www.npmjs.com/package/smart-middleware)
-[![Build Status](https://travis-ci.org/amenema/smart-middleware.svg?branch=master)](https://travis-ci.org/amenema/smart-middleware)
-[![Coverage Status](https://coveralls.io/repos/github/amenema/smart-middleware/badge.svg?branch=master)](https://coveralls.io/github/amenema/smart-middleware?branch=master)
-[![npm](https://img.shields.io/npm/l/express.svg?style=flat-square)](https://github.com/amenema/smart-middleware/https://github.com/amenema/smart-middleware/blob/master/LICENSE)
+[![Travis](https://img.shields.io/badge/npm-0.1.1-brightgreen.svg?style=flat-square)](https://www.npmjs.com/package/smart-middleware) [![Build Status](https://travis-ci.org/amenema/smart-middleware.svg?branch=master)](https://travis-ci.org/amenema/smart-middleware) [![Coverage Status](https://coveralls.io/repos/github/amenema/smart-middleware/badge.svg?branch=master)](https://coveralls.io/github/amenema/smart-middleware?branch=master) [![npm](https://img.shields.io/npm/l/express.svg?style=flat-square)](https://github.com/amenema/smart-middleware/https://github.com/amenema/smart-middleware/blob/master/LICENSE)
  
 ## 项目地址
 [npm](https://www.npmjs.com/package/smart-middleware)  
@@ -82,17 +79,33 @@ module.exports = function(router){
 
 ### 注：
 1. **smart-middleware**只有一个方法**autoLoading(router, middleware, path)** 。其中**router**是**koa-router**必须传入，**path**是项目的路由文件夹的**绝对路径**,也是必须传入。**middleware** 是管理项目中间件的数组。默认为**[]**。
-2. 参数**middleware**的格式：
-	* ```template: {url: 'url', fn: [fn1,fn2]}```
-	* ```url: (url.indexOf('\') === 0)? 'this is regexp' : 'this is common String'```
-3. **middleware**匹配规则
-	* 加载中间件时根据url从前往后匹配，形成一个匹配成功的数组，如：```[{url:'/list', fn:[m_1, m_2]}, {url:'\\^(?!/open)', fn: [m_3, m_4]}]```,则当访问路由**/list**时, 匹配上的中间件的执行顺序为: **m\_3, m\_4, m\_1, m\_2**
+2. 参数**middleware**的格式： 
+ 
+	```
+	 template: {url: 'url', fn: [m1,m2]}
+	```  
+3. 路由匹配规则：  
+	
+	```
+	url: (url.indexOf('\') === 0)? 'this is regexp' : 'this is common String
+	```
+	* 字符串完全匹配
+	* 正则匹配：正则写法，在**url**中加入**‘\\\’**表示该**url**使用正则匹配
+4. **middleware**匹配规则
+	* 加载中间件时根据url从前往后匹配，形成一个匹配成功的数组，如： 
+	 
+	```
+	[{url:'/list', fn:[m_1, m_2]}, {url:'\\^(?!/open)', fn: [m_3, m_4]}]
+	```  
+	,则当访问路由**/list**时, 匹配上的中间件的执行顺序为: **m\_3, m\_4, m\_1, m\_2**
 
 ## 测试  
 
-```npm test```
+```
+npm test
+```
 
 ## 反馈   
 
-* 评论留言
+* 评论区留言
 * [github-issue](https://github.com/amenema/smart-middleware/issues)
