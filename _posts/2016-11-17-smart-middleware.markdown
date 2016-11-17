@@ -9,7 +9,8 @@ catalog: true
 keyword: Koa,node,smart-middleware,middleware,router,
 description: 本文介绍了koa的中间件smart-middleware的使用方法。
 tags:
-    - Node Koa
+    - NODE   
+    -Koa
 ---
 
 
