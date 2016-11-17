@@ -26,11 +26,13 @@ tags:
 [npm](https://www.npmjs.com/package/smart-middleware)  
 [github](https://github.com/amenema/smart-middleware)
 
-## 安装
+## 安装  
+
 ```
 npm install smart-middleware
 ```
-## 使用
+## 使用  
+
 ```
 /*step 1 app.js*/
 var sm = require('smart-middleware');
@@ -76,7 +78,8 @@ module.exports = function(router){
     this.body += '/open/user';
   });
 };
-```
+```  
+
 ### 注：
 1. **smart-middleware**只有一个方法**autoLoading(router, middleware, path)** 。其中**router**是**koa-router**必须传入，**path**是项目的路由文件夹的**绝对路径**,也是必须传入。**middleware** 是管理项目中间件的数组。默认为**[]**。
 2. 参数**middleware**的格式：
@@ -85,9 +88,11 @@ module.exports = function(router){
 3. **middleware**匹配规则
 	* 加载中间件时根据url从前往后匹配，形成一个匹配成功的数组，如：```[{url:'/list', fn:[m_1, m_2]}, {url:'\\^(?!/open)', fn: [m_3, m_4]}]```,则当访问路由**/list**时, 匹配上的中间件的执行顺序为: **m\_3, m\_4, m\_1, m\_2**
 
-## 测试
+## 测试  
+
 ```npm test```
 
-## 反馈
+## 反馈   
+
 * 评论留言
 * [github-issue](https://github.com/amenema/smart-middleware/issues)
