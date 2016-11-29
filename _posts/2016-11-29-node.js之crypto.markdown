@@ -1,0 +1,22 @@
+---
+layout:     post
+title:      "JS之bind浅析及应用场景"
+subtitle:   " \"v6.x中的一些坑\""
+date:       2016-11-29 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: node,crypto,6.x,4.x,bug,
+description: 本文描述了node 6.x与之前在crypto模块的更新
+tags:
+    - NODE
+---
+
+
+**node v6.9.0** 发布已经有一段时间了，应该有不少人已经入坑。今天在填微信小程序的坑时，发现了一个**bug**: 在生成**sha1**的签名时，6.9.1的版本竟然与之前的版本产生结果不一致，惊天大**bug**呀，怎么可能出现这种错误呢。是不是哪个地方写错了呢？不过这种问题应该不是我一个人遇到了，**issues**上应该有人提吧。果不其然有人掉坑里去了([戳此围观](https://github.com/nodejs/node/issues/6487))。原来是在**v6.x**中改变了**update(data[,input_encoding])**的默认值，之前的值默认为**binary**现在改为**utf8**。而且可选的类型由原来的**binary**,**utf8**,**ascii**变为现在的**utf8**,**ascii**,**latin1**。
+
+附：  
+
+* [v6.x crypto api](https://nodejs.org/dist/latest-v6.x/docs/api/crypto.html#crypto_hmac_update_data_input_encoding)
+* [v4.x crypto api](http://nodejs.cn/doc/node_4/crypto.html#crypto_hmac_update_data_input_encoding)
+* [node github issues](https://github.com/nodejs/node/issues/6487)
