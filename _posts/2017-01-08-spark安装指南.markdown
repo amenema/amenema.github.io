@@ -9,7 +9,7 @@ catalog: true
 keyword: spark, 安装, 配置, mac, oxs, nuix, python
 description: 本文描述了如何在mac上安装配置spark
 tags:
-    - spark
+    - Spark
 ---
 
 
@@ -45,3 +45,11 @@ PATH=$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
 **spark** 提供了很多不同语言的**api**。 有如下四种**Scala**, **Python**, **R**, **Java**。[官方文档](http://spark.apache.org/docs/latest/)里有对应这四种语言的**api**文档和**example**。在**${your_spark_home}/bin**文件夹里有很多文件。如**spark_shell**,**pyspark**,**spark_submit**。**spark_shell**和**pyspark**分别是**scala**和**Python**版的**REPL**(交互式的开发环境)。而**spark_submit** 则是用来提交我们要执行的**spark**脚本的。  
 在**${your_spark_home}/sbin** 目录下边的是用来管理**spark**集群的。如启动**master**节点。可以使用命令**start-master**, 启动后在浏览器中输入网址[**localhost:8080**](localhost:8080)即可查看**spark**的集群信息。要关闭**master**节点则输入**stop-master**命令，即可关闭。  
 
+## 优化**Sark**输出日志  
+
+**spark** 的日志使用的是**log4j**，默认输入的是**INFO**级别的，所以会输出很多信息。但是并不方便我们查看。所以怎么关闭呢？方法很简单。  
+
+1. 进入到**${your_spark_home}/conf/** 目录下，拷贝一份**log4j.properties.template**并命名为**log4j.properties**。
+2. 打开**log4j.properties**, 将其中的**INFO**全部替换为**WARN**,保存。
+
+修改后的日志输出是不是清爽了很多呢！
