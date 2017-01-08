@@ -1,0 +1,47 @@
+---
+layout:     post
+title:      "mac下安装并配置spark"
+subtitle:   " \"*nuix可参考\""
+date:       2017-01-08 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: spark, 安装, 配置, mac, oxs, nuix, python
+description: 本文描述了如何在mac上安装配置spark
+tags:
+    - spark
+---
+
+
+# Spark安装指南  
+
+> Spark是一种与Hadoop相似的开源集群计算框架，但是Spark比Hadoop更高效，因为Spark将结果输入到内存中，而不是Hadoop的hdfs，所以Spark在某些工作负载方面表现的更优越。接下来我们将讲解如何在mac上跑一个Spark
+
+
+## 下载**Spark**
+**spark** 使用**scala**，而**scala**是运行在**JVM**上的一种函数式编程语言。所以要想跑spark要确保系统里已安装**Java**。
+**spark** 目前有很多版本，我这里我下载的是最新版本，你也可以按照需要选择其他版本。  
+[下载地址](http://spark.apache.org/downloads.html) 
+
+## 配置**Spark** 
+
+**spark**压缩包解压后就可以用了！是的，你没看错，解压后就可以用了。当然为了方便还是要配置一下。主要是把它加入**path**。
+在你的**/etc/bashrc**下添加如下两行：   
+
+```
+SPARK_HOME=${your_spark_home}
+PATH=$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
+```  
+
+注：  
+
+* 添加完成后保存，并执行 **source /etc/bashrc**
+* **${your_spark_home}**就是你的spark文件夹的路径。我的解压后移动到**/usr/local/bin**下边去了。
+
+
+## 运行**Spark**  
+
+在命令行输入**pyspark**，如果配置成功。过一会儿就会打印出**Welcome to spark**。  
+**spark** 提供了很多不同语言的**api**。 有如下四种**Scala**, **Python**, **R**, **Java**。[官方文档](http://spark.apache.org/docs/latest/)里有对应这四种语言的**api**文档和**example**。在**${your_spark_home}/bin**文件夹里有很多文件。如**spark_shell**,**pyspark**,**spark_submit**。**spark_shell**和**pyspark**分别是**scala**和**Python**版的**REPL**(交互式的开发环境)。而**spark_submit** 则是用来提交我们要执行的**spark**脚本的。  
+在**${your_spark_home}/sbin** 目录下边的是用来管理**spark**集群的。如启动**master**节点。可以使用命令**start-master**, 启动后在浏览器中输入网址[**localhost:8080**](localhost:8080)即可查看**spark**的集群信息。要关闭**master**节点则输入**stop-master**命令，即可关闭。  
+
