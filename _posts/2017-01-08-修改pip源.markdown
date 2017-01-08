@@ -1,0 +1,40 @@
+---
+layout:     post
+title:      "修改pip的源"
+subtitle:   " \"\""
+date:       2017-01-08 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: python,pip,源,mac,linux
+description: 本文描述了如何更换mac下pip的安装源，解决pip安装慢得问题
+tags:
+    - Python
+---
+
+
+# 更换**pip**的安装源  
+
+> 由于某些原因，使用**pip**安装模块时，经常会提示**timeout**,导致模块安装失败。一种比较方便的方法是更换**pip**的源即可一劳永逸的解决问题。  
+
+## 国内的镜像  
+
+1. [豆瓣：https://pypi.doubanio.com/simple/](https://pypi.doubanio.com/simple/)
+2. [阿里: http://mirrors.aliyun.com/pypi/simple/](http://mirrors.aliyun.com/pypi/simple/)
+
+## 使用方法
+
+* 临时替换
+
+```pip install moduleName -i https://pypi.doubanio.com/simple/```
+
+* 永久替换  
+
+修改 **~/.pip/pip.conf** 文件，该文件默认是不存在的，所以需要安装所示路径创建该文件。在**pip.conf**中添加如下两条记录：
+
+```
+[global]
+index-url = https://pypi.douban.com/simple
+```  
+
+修改完成后，即可生效。
