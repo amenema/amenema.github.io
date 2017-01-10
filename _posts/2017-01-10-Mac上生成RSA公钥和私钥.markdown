@@ -19,13 +19,13 @@ tags:
 
 
 ```
-step 1
+// step 1
 $ openssl //在终端输入openssl 开启openssl shell
-step 2 
+// step 2 
 OpenSSL> genrsa -out rsa_private_key.pem 1024
-step 3
+// step 3
 OpenSSL> pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM –nocrypt
-step 4
+// step 4
 OpenSSL> rsa -in rsa_private_key.pem -out rsa_public_key.pem -pubout
 
 ```  
