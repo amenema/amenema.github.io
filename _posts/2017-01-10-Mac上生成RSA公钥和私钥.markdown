@@ -30,4 +30,4 @@ OpenSSL> rsa -in rsa_private_key.pem -out rsa_public_key.pem -pubout
 
 ```  
 
-执行上面四步后，在当前目录下就会生成对应的公钥和私钥。
+执行上面四步后，在当前目录下就会生成名称为 **rsa_private_key.pem**的私钥和名称为**rsa_public_key.pem** 的公钥。
