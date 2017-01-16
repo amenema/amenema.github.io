@@ -1,0 +1,132 @@
+---
+layout:     post
+title:      "浅析Promise（上)"
+subtitle:   " \"promise的前世今生\""
+date:       2017-01-15 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: Promise,A,A+,B,D,Promise/A,Promise/B,Promise/D,Promise/A+
+description: 本文描述了promise的相关规范
+tags:
+    - JavaScript
+---
+
+
+# **Promise**的前世今生  
+
+> **Promise**是什么？**Promise**是一种组织代码的规范，是一种约定。  
+
+## **Promise**的兄弟姐妹  
+为了解决**JavaScript**的回调金字塔问题，于是**CommonJS**便推出了**Promise/A**规范。但是光有**Promise/A**并没有解决问题。于是便有了**Promise/B,Promise/D,Promise/A+**。其中**Promise/A**是基础。**A**描述了什么是**Promise**。但是光有**Promsie/A**并不能很好地工作。所以**Promsie/B**在**A**的基础上扩展了一组**API**。有了这些**API**便又很多热心肠的大神开始生产各种**Promise**实现，为了让各种实现互相通用，变成相亲相爱的一家人，于是便有了**Promise/D**。**Promise/D**对**Promise**对象和**Promise/B**规范做了进一步约定。**Promise/D**使得各个**Promise**具体实现搭配起来更加默契。  
+
+但是实现一个**Promise**要遵循三个规范，太麻烦了！于是一个自称**Promise/A+**的组织基于**Promise/A**发布了一个新的规范**Promise/A+**。**Promise/A+**规范了**.then**方法，并将其作为是否为**Promise**的判断条件。而且提供了一个兼容性测试工具。总的来说**Promise/A+**可以看做是**Promise/A/D**的合体。目前很多**module**都是基于**Promise/A+**实现的。如**ES6 Promise**。 
+
+## **Promise/A+**规范  
+
+> **Promise**表示一个异步操作的最终结果，与之进行交互的主要是**.then()**方法，该方法接受两个回调函数，用于接受**Promise**的终值或者本**Promise**抛出的异常。  
+
+### 相关术语  
+
+* **Promise** 一个拥有**then**方法的对象或者函数
+* **value** 指任何**JavaScript**的合法值（**undefined，thenable**和**Promise**）
+* **exception** 使用**throw**抛出的一个值
+* **reason** 表示一个**Promise**的拒绝原因
+
+### 规范 
+
+#### **Promise**的状态 
+
+一个**Promise**当前状态必须是如下三种状态中的一种：**Pending(等待态), Fulfilled(执行态), Rejected(拒绝态)**。
+
+* **Pending** 处在该状态时，**Promise**需满足如下条件：
+	* 可以迁移至**Fulfilled**或者**Rejected**
+
+* **Fulfilled** 处在该状态的条件为：
+	* 不能迁移至其他任何状态
+	* 必须拥有一个不可变的终值
+	
+* **Rejected** 处在该状态时的条件为: 
+	* 不能迁移志其他任何状态
+	* 必须拥有一个不可变的**reason**
+
+综上所述，**Promise**从创建到结束必须是以上三种状态之一，而且肯定是已**Pending**开始，**Fulfilled**或者**Rejected**结束。并且状态是不可逆转的。
+
+#### **Then**方法 
+
+一个**Promise**必须提供一个**then**方法  
+ 
+```promise.then(onFulfilled, onRejected)``` 
+
+* 参数
+	* **onFulfilled** 可选 （如果不是函数则被忽略）
+	* **onRejected** 可选 （如果不是函数则被忽略）
+* **onFulfilled** 特性 (如果该参数是函数)
+	* 当 **Promise** 执行结束后必须被调用，第一个参数为**Promise**的终值
+	* **Promise**执行结束前不可被调用
+	* 执行次数不可超过一次
+* **onRejected** 特性 （如果该参数是函数）
+	* 当**Promise**被拒绝后必须执行调用，第一个参数为**Promise**的拒绝原因
+	* 当**Promise**被拒绝执行前不可调用
+	* 执行次数不可超过一次
+
+* 调用时机   
+**onFulfilled** 和 **onRejected** 只有在执行环境堆栈仅包含平台代码时才可被调用  
+ 
+* 调用要求  
+**onFulfilled** 和 **onRejected** 必须作为函数调用（即没有**this**） 
+
+* 多次调用
+**then**方法可以被同一个**Promise**多次调用
+	* 当**Promise**成功执行时，所有**onFulfilled**需按照其注册顺序依次回调
+	* 当**Promise**被拒绝执行时，所有**onRejected**需按照其注册顺序依次回调
+
+* 返回
+**then**方法必须返回一个**Promise**对象  
+
+```promise2 = promise1.then(onFulfilled, onRejected)```
+
+* 若 **onFulfilled**或**onRejected**返回一个**x**，则运行如下**Promise**解决过程： ```[[Resolve]](promise2, x)```
+* 若 **onFulfilled**或**onRejected**返回一个异常，则**promise2**必须拒绝执行，并返回异常信息
+* 若 **onFulfilled**不是函数并且**promise1**成功执行，则**promise2**必须成功执行并返回相同的值
+* 若 **onResolved**不是函数，且**promise1**拒绝执行，**promise2**必须拒绝执行并返回相同的原因  
+
+#### **Promise**的解决过程 
+
+**Promise**的解决过程是一个抽象的操作，其需输入一个**promsie**和一个值，可以表示为```[[Resolve]](promsie, x)```，若**x**的有**then**方法，且看上去像**Promise**,解决程序尝试让**promise**接受**x**的状态；否则使用**x**的值来执行**promise**。  
+
+这种**thenable**的特性使得**Promise** 的实现可以更具通用性：只要其暴露出一个遵循**Promise/A+**规范的**then**方法即可；同时也使遵循**Promise/A+**规范的实现可以与那些不太规范但可用的实现良好共存。 
+
+运行```[[Resolve]](promsie, x)```须遵循如下步骤： 
+
+1. **x**与**promise**相等  
+若 **x**与**promise**指向同一对象，则拒绝执行**promise**并抛出**TypeError**异常
+2. **x**为**Prmise**对象  
+若**x** 为**Promise**,则让**promise**接受**x**的状态：  
+	* **x**为**Pending**状态， **promise**需保持为**Pending** 直到 **x**被执行或者拒绝
+	* **x**为**Fulfilled**, 用相同的值执行**promise**
+	* **x**为**Rejected**, 用相同的拒因执行**promise**  
+
+3. 若**x** 为对象或者函数
+	* 把**x.then**赋值给**then**
+	* 若取**x.then**的值抛出异常，则把该异常作为拒绝**prmoise**的原因
+	* 若**then**是函数，则将**x**作为函数作用域**this**调用。传递两个回调函数作为参数，第一个参数叫做**resolvePromise**,第二叫做**rejectPromise**：
+		* 若 **resolvePromise** 以**y**为参数被调用，则运行```[[Resolve]](promise, y)```
+		* 若 **rejectProise** 以**r**为原因被调用，则以**r**为原因拒绝**promise**
+		* 若**resolvePromise** 和**rejectPromise**均被调用，或者被同一参数调用了多次，则优先采用首次调用并忽略剩下调用
+		* 若调用**then**抛出了异常**e**:
+			* 若**resolvePromise**或**rejectPromise**已经被调用，则忽略
+			* 否则已**e**为原因拒绝**promise**
+		* 若**then** 不是函数，以**x**为参数执行**promise**
+	* 若**x** 不为对象或者函数，以**x**为参数执行**promise**
+
+若一个**promise**被一个循环的**thenable**链中的对象解决，而```[[Resolve]](promise, thenable)```的递归性质又使得其被再次调用，根据上述算法将会陷入无限递归中。算法虽不强制要求，但也鼓励使用者检测这样的递归是否存在，若检测到存在则以一个可是别的**TypeError** 为原因来拒绝**promise**  
+
+# 参考文档  
+**Promsie/A**英文原文：[http://wiki.commonjs.org/wiki/Promises/A](http://wiki.commonjs.org/wiki/Promises/A)  
+
+**Promsie/B**英文原文：[http://wiki.commonjs.org/wiki/Promises/B](http://wiki.commonjs.org/wiki/Promises/B) 
+
+**Promsie/D**英文原文：[http://wiki.commonjs.org/wiki/Promises/D](http://wiki.commonjs.org/wiki/Promises/D) 
+
+**Promise/A+**英文原文: [https://promisesaplus.com/](https://promisesaplus.com/)
