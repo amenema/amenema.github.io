@@ -1,0 +1,94 @@
+---
+layout:     post
+title:      "JS全局变量与顶层对象浅析"
+subtitle:   " \"全局变量与顶层对象\""
+date:       2017-02-06 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: JS,Javascript,nodeJS,全局变量,顶层对象,global,window
+description: 本文描述了JS中什么全局变量，什么事顶层对象，以及全局变量和顶层对象之间的关系
+tags:
+    - Javascript
+---
+
+
+# 全局变量和顶层对象  
+
+## 什么是全局变量  
+
+在**JS**中全局变量就是指在函数外部通过**var**声明的变量。如果是在**nodeJS**环境中则需通过**global.variable**显示的声明。全局变量在程序启动时便加载到内存中,直到程序结束。  
+
+### 问题  
+
+* 为什么在**node**中通过**var**定义的变量不是全局变量？  
+
+	答： 因为在**node**中所有的代码都在当前**module**中。而**module**不是全局的。所以需要通过**global**声明。
+
+```
+	//demo1 在chrome浏览器中
+	var name = 'Tom'
+	console.log(window.name) // Tom
+	
+	//demo2 在node中
+	global.name = 'Tom'
+	console.log(name) // Tom
+```  
+
+## 什么是顶层对象  
+
+顶层对象是预定义的对象，作为 JavaScript 的全局函数和全局属性的占位符。通过使用顶层对象，可以访问所有其他所有预定义的对象、函数和属性。顶层对象不是任何对象的属性，所以它没有名称。顶层对象在浏览器环境中是指**window**,在**node**环境中是指**global**。  
+
+在**ES5**中顶层对象是全局变量的宿主。即在浏览器环境中在函数外部通过**var**声明的变量都是全局变量都被绑定到**window**上。因为全局变量的生命周期是跟随程序的。而且变量的值可以在程序的任何地方做任意修改。所以很容易造成问题。但是在**ES6**中变将全局变量和顶层对象解耦了。不过为了兼容之前的程序。通过**var**声明的全局变量还是属于顶层对象的。但是通过**let、const**声明的全局变量不再属于顶层对象。  
+
+```
+	//demo3 在chrome浏览器中
+	var age = 18
+	console.log(window.age) //18
+	let sex = '男'
+	console.log(window.sex) //undefined
+```  
+
+## 关于**this**  
+
+* 浏览器环境中:
+	* 函数外部： **this** === **window**
+	* 函数内部(单纯的函数即不是对象的方法)： 
+		* 严格模式： **this** === **undefined**
+		* 非严格模式：**this** === **window**
+* 在**node**环境中:
+	* 函数外部： **this** === 当前的**module**
+	* 函数内部：同浏览器环境
+
+
+```
+	//demo4 在浏览器环境中
+	var age = 18
+	console.log(this.age) //18
+	
+	//demo5 在node环境中
+	var age = 18
+	global.name = 'Tom'
+	console.log(this.age) //undefined
+	console.log(this.name) //undefined
+```
+
+## 如果在顶层对象中绑定一个不可变的变量  
+
+如使用**node**做项目时，经常需要加载很多常量。一种方法是使用**const**然后不停地**require**。这种方式的缺点就是每次在新的**module**中使用时都要**require**常量对应的**module**。另一中方法是将常量绑定到**global**。使用**Object.defineProperty**设置其为不可修改的。  
+
+
+```
+	//demo6 在node环境中
+	Object.defineProperty(global, 'finalValue', {
+  		value: function (key, value) {
+    				Object.defineProperty(global, key, {
+      					value: value
+    			});
+ 		}
+	})
+	
+	finalValue('appName', 'app')
+	console.log(appName) //app
+	appName = 'newApp' //throw err
+```
