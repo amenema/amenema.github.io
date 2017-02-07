@@ -1,0 +1,64 @@
+---
+layout:     post
+title:      "按值传递、按引用传递、按共享传递"
+subtitle:   " \"Java,JavaScript,Python的传参方式\""
+date:       2017-02-07 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: 按值传递,按引用传递,按共享传递,Java,JavaScript,JS,Python
+description: 本文描述了按值传递，按引用传递和按共享传递的区别。
+tags:
+    - Base
+---
+
+
+# 按值传递、按引用传递、按共享传递  
+
+## 按值传递（**call by value**）    
+
+按值传递，就是指在调用函数时，将实参对应的值做一个拷贝指向函数对应的形参。在函数内改变形参对应的值并不会影响外部实参的值。  
+
+## 按引用传递 (**call by reference**)  
+
+按引用传递，是指在调用函数时，传递给函数的是实参的地址即引用，而不是实参的拷贝。在函数内部参数的值，对外部的实参是可见的。 
+
+## 按共享传递 （**call by sharing**）  
+
+按共享传递，是指在调用函数时，传递给函数的是实参的地址的拷贝（如果实参在栈中，则直接拷贝该值）。在函数内部对参数进行操作时，需要先**拷贝的地址**寻找到具体的值，再进行操作。如果该值在栈中，那么因为是直接拷贝的值，所以函数内部对参数进行操作不会对外部变量产生影响。如果原来拷贝的是原值在堆中的地址，那么需要先根据该地址找到堆中对应的位置，再进行操作。因为传递的是地址的拷贝所以函数内对值的操作对外部变量是可见的。  
+
+按共享传递可以理解为**按值传递**的一个特例，这里的值是对象的引用地址，而不是具体对象。
+
+## 举例  
+
+```
+
+var a = 1
+var b = 2
+function change(x, y) {
+  var z = x
+  x = y
+  y = z
+  console.log('a = ' + x + ' , b = ' + y)
+}
+change(a, b)
+console.log('a = ' + a + ' , b = ' + b)
+//因为是传值调用所以函数内部操作并未影响外部变量
+
+
+var o1 = {name: 'Tom'}
+function changeObj(o) {
+  o.name = 'Lucy'
+  console.log('name is : ' + o.name)
+  o = {name: 'Eve'}
+  console.log('name is : ' + o.name)
+}
+changeObj(o1)
+console.log('name is: ' + o1.name)
+//因为是按共享传递调用。所以如果是修改对象的值，对外部可见。但是当将形参的引用指向闲的对象时，由于该引用是一个原引用的拷贝，所以并未影响到原对象。
+```   
+
+## 参考  
+
+
+1. [wikipedia:求职策略](https://zh.wikipedia.org/wiki/%E6%B1%82%E5%80%BC%E7%AD%96%E7%95%A5)
