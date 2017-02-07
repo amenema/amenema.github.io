@@ -61,4 +61,4 @@ console.log('name is: ' + o1.name)
 ## 参考  
 
 
-1. [wikipedia:求职策略](https://zh.wikipedia.org/wiki/%E6%B1%82%E5%80%BC%E7%AD%96%E7%95%A5)
+1. [wikipedia:求值策略](https://zh.wikipedia.org/wiki/%E6%B1%82%E5%80%BC%E7%AD%96%E7%95%A5)
