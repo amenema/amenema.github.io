@@ -193,7 +193,7 @@ echo '密码已更新：'${pwd}|mail -s 'vps 密码更新邮件' abc@163.com
 * **openssl rand -base64 10**  是生成一个随机密码，长度为10，可以替换为别的密码生成方式
 * **sed -i '6c'${rp_str} /etc/shadowsocks.json**  是将配置文件的第六行替换为当前的内容，因为**shadowsocks.json**中密码在第六行，所以这里替换的是第六行，如果不是第六行则需要改成别的如在第五行，则改为**'5c'**  
 * **service shadowsocks restart**  修改完成后需要重启才能够生效  
-* **echo '密码已更新：'${pwd}\|mail -s 'vps 密码更新邮件' abc@163.com**  这里是使用**mail**服务发送邮件  
+* **echo '密码已更新：'\${pwd}\|mail -s 'vps 密码更新邮件' abc@163.com**  这里是使用**mail**服务发送邮件  
 
 ### 安装邮件 
 这里使用外部的邮箱服务发送邮件，具体配置如下：
