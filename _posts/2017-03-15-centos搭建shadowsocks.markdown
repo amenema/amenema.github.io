@@ -32,7 +32,7 @@ tags:
 ### 安装**shadowsocks**  
 
 ``` 
-[root@vps ~]# yum install shadowsocks
+[root@vps ~]# pip install shadowsocks
 ```   
 
 ### 添加配置文件  
@@ -46,7 +46,7 @@ tags:
 "local_port":1080, //内网端口，使用“1080”即可，也可改成其它
 "password":"yourPassword", //你的链接密码
 "timeout":600, //超时时间 500~5000皆可
-"method":"ace-256-cfb" //密码加密方式有如下选择：“ace-256-cfb”,"table","rc4-md5","salsa20",等等
+"method":"aes-256-cfb" //密码加密方式有如下选择：“aes-256-cfb”,"table","rc4-md5","salsa20",等等
 }
 ```  
 
