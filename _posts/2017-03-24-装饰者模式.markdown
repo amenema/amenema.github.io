@@ -1,0 +1,127 @@
+---
+layout:     post
+title:      "装饰者模式"
+subtitle:   " \"设计模式\""
+date:       2017-03-24 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: 设计模式,装饰者模式,Java,JS,JavaScript,pyton,计算机语言, design pattern
+description: 本文描述了什么是装饰者模式，以及装饰者模式的实现原理
+tags:
+    - Design Patterns
+---
+
+
+# 装饰者模式  
+
+> 装饰者模式一句话总结就是俄罗套娃。装饰类具有与被装饰类完全相同的及基因即相同的入参相同的返回类型。  
+
+## 模式结构   
+![](http://7xwfcm.com2.z0.glb.qiniucdn.com/img/%E6%A8%A1%E5%BC%8F%E7%BB%93%E6%9E%84.jpg) 
+
+### 角色  
+* 抽象类（**Component**）抽象功能  
+* 实现类 (**ConcreteComponent**) 功能的具体实现类  
+* 抽象装饰类 (**Decorator**) 抽象装饰类，定义了需要被装饰的功能接口  
+* 具体装饰类 (**ConcreteDecoratorA**) 对接口实现 
+* 具体装饰类 (**ConcreteDecoratorB**)    
+
+```
+//Java 实现
+abstract class Component {
+
+    public abstract void fly();
+    public abstract void run();
+}
+
+class ConcreteComponent extends Component {
+    public void fly () {
+        System.out.print("fly");
+    }
+
+    public void run () {
+        System.out.print("run");
+    }
+}
+
+abstract class Decorator {
+    Component component;
+    public Decorator(Component component){
+        this.component = component;
+    }
+
+    public abstract void fly();
+    public abstract void run();
+}
+
+class ConcreteDecoratorA extends Decorator {
+
+    public ConcreteDecoratorA(Component c) {
+        super(c);
+    }
+    public void fly() {
+        System.out.println("before fly");
+        this.component.fly();
+    }
+    public void run () {
+        System.out.println("before run");
+        this.component.run();
+    }
+}
+
+public class DecoratorDemo {
+    public static void main(String args[]){
+        Component c = new ConcreteComponent();
+        Decorator d = new ConcreteDecoratorA(c);
+        d.fly();
+    }
+}
+
+//运行结果：
+before fly
+fly
+Process finished with exit code 0
+	
+```  
+
+
+```
+// js实现
+'use strict'
+
+let Request = function () {
+
+}
+
+Request.prototype.fly = () => {
+    console.log('fly')
+}
+
+Request.prototype.run = () => {
+    console.log('run')
+}
+
+let Decorator = function (baseRequest) {
+    this.baseRequest = baseRequest
+    let methods =  Object.keys(baseRequest.__proto__)
+    methods.forEach( c => { //自动识别具体类的所有方法
+        Decorator.prototype[c] = function () {
+            console.log('-----this is Decorator------')
+            return baseRequest[c].apply(baseRequest, arguments)
+        }
+    })
+}
+
+let d = new Decorator(new Request())
+d.fly()
+//运行结果
+-----this is Decorator------
+fly
+
+Process finished with exit code 0
+
+
+```  
+
+装饰者模式可以在不影响业务代码的情况下，从横向切入加入额外的逻辑。如缓存模块，日志模块等。
