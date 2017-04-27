@@ -124,7 +124,7 @@ tags:
 ### 开始编译  
 
 编译之前可以先读一下这篇文章，里边提供了很多错误的解决方法
-http://www.voidcn.com/blog/j754379117/article/p-6347581.html
+[http://www.voidcn.com/blog/j754379117/article/p-6347581.html](http://www.voidcn.com/blog/j754379117/article/p-6347581.html)
 我在编译时遇到了文中提到的问题 4，5， 7   
 另外还有一个文中没有提到的问题如下：   
 
@@ -179,4 +179,9 @@ End   2017-04-26 22:40:00
 -------------------------
 	
 ```
+
+# 参考文章  
+
+* [第一章 Mac os下编译openJDK 7](http://www.voidcn.com/blog/j754379117/article/p-6347581.html) 
+* [OS X El Capitan에서 OpenJDK7 빌드하기](http://tiramisu79.umask.io/build-openjdk7-on-osx-el-capitan/)
 		
