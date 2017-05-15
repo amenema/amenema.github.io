@@ -1,0 +1,171 @@
+---
+layout:     post
+title:      "观察者模式"
+subtitle:   " \"Design Patterns 之 观察者模式\""
+date:       2017-05-15 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: design patterns,observer,java,设计模式,观察者模式,模式
+description: 本文描述了观察者模式的的基本原理,以及Java语言的实现方式。
+tags:
+    - Design Patterns
+---
+
+
+# 观察者模式  
+
+> **观察者** 顾名思义，即观察目标对象，当目标发生改变时，执行相应的操作。   
+
+## 模式结构  
+
+![](http://7xwfcm.com2.z0.glb.qiniucdn.com/img/Obeserver.jpg)  
+
+## 角色  
+* **Subject** 目标  
+* **ConcreteSubject** 目标实现 
+* **Obeserver** 观察者  
+* **ConcreteObeserver** 观察者实现  
+
+简单理解: 将观察者(**Obeserver**)传递给目标(**Subject**)。当**目标**改变时，遍历列表(**list**)，调用相应**观察者**提供的方法(**update**)。  
+### 推模型, 拉模型  
+这里的**推模型**与**拉模型**的主要区别是调用观察者的方法时，传入参数的不同。  
+
+* 推模型 假定**观察者**所需的数据固定，则在调用**update**时，传入指定的参数。
+* 拉模型 假定**观察者**所需的数据不固定，则将**目标**自身作为参数传入**update**。然后有**观察者**主动获取目标数据。即拉模型。
+
+## Java 实现   
+```
+
+//Subject 抽象类
+package com.design_patterns.observer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Subject {
+    private boolean status;
+    private List<Observer> list = new ArrayList<Observer>();
+
+    public boolean getStatus() { return this.status; }
+
+    public void changeStatus() { this.status = !status; }
+    public void add (Observer o){
+        list.add(o);
+    }
+
+    public boolean remove (Observer o){
+        return list.remove(o);
+    }
+
+    public void notifyObservers (boolean status){
+        for(Observer o :list){
+            o.update(status);
+        }
+    }
+
+    public void notifyObservers (){
+        for (Observer o : list){
+            o.update(this);
+        }
+    }
+}
+
+// Observer 抽象类 这里为了模拟两种模型，故而重载的update方法
+package com.design_patterns.observer;
+
+public abstract  class Observer {
+    public void update(boolean status){};
+    public void update(Subject subject){};
+}
+
+```  
+
+### 推模型  
+
+```
+// 推模型的目标类具体实现
+package com.design_patterns.observer;
+
+public class PushDemoSubject extends Subject {
+
+    public void changeStatus() {
+        super.changeStatus();
+        this.notifyObservers(getStatus());
+    }
+}
+
+// 推模型的观察者类的具体实现
+package com.design_patterns.observer;
+
+public class PushDemoObserver extends Observer {
+
+    public void update(boolean status){
+        System.out.println(" push status is : " + status);
+    }
+}
+
+
+// 执行
+package com.design_patterns.observer;
+
+public class App {
+    public static void main(String[] args) {
+        PushDemoSubject s2 = new PushDemoSubject();
+        Observer o2 = new PushDemoObserver();
+        s2.add(o2);
+        s2.changeStatus();
+    }
+}
+
+//输出
+push status is : true
+```  
+
+### 拉模型  
+
+```
+//拉模型的目标类实现
+package com.design_patterns.observer;
+
+public class PullDemoSubject extends Subject {
+
+    public void changeStatus (){
+        super.changeStatus();
+        notifyObservers();
+    }
+}
+
+
+//拉模型的观察者类具体实现
+package com.design_patterns.observer;
+
+public class PullDemoObserver extends Observer {
+    public void update(Subject subject){
+        System.out.println("pull status is :" + subject.getStatus());
+    }
+}
+
+//执行
+package com.design_patterns.observer;
+
+public class App {
+    public static void main(String[] args) {
+        PullDemoSubject s1 = new PullDemoSubject();
+        Observer o1 = new PullDemoObserver();
+        s1.add(o1);
+        s1.changeStatus();
+    }
+}
+
+//输出
+pull status is : true
+``` 
+
+
+### **Java** 内置实现  
+Java已经内置了相应的实现  
+
+* 目标类:  **java.util.Observable**
+* 观察者类: **java.util.Observer**  
+ 
