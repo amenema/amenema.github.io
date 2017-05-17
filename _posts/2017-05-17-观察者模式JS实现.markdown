@@ -1,0 +1,298 @@
+---
+layout:     post
+title:      "观察者模式JS实现"
+subtitle:   " \"js实现观察者模式（发布/订阅模式）\""
+date:       2016-08-03 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: JS,观察者模式,发布订阅模式,事件模式,desigin pattern,EventEmitter,observer
+description: 本文描述了如何实现一个js版本的观察者模式(发布/订阅模式)
+tags:
+    - Design Patterns
+---
+
+
+# 观察者模式(发布订阅模式)JS实现   
+
+
+## 简易版**observer**  
+
+```
+'use strict'
+/**
+ * Created by menzhongxin on 2017/5/16.
+ */
+
+let Observer = function () {
+  this._events = Object.create(null) //初始化一个空对象,用于存放listener
+  //格式：e.g. _events = {target: [listener1, listener2]}
+}
+
+Observer.prototype.addEvent = function (target, listener) {
+  let events = this._events
+  !events[target] && (events[target] = [])
+  events[target].push(listener)
+  return this
+}
+
+Observer.prototype.removeAll = function () {
+  this._events = Object.create(null)
+  return this
+}
+
+Observer.prototype.removeListener = function (target, listener) {
+  let events = this._events
+  if(!events[target])//如果对应的目标不存在直接返回，不做处理
+    return this
+  if(!listener){ //如果没传listener,则将该target下所有的listener清除
+    events[target] = []
+    return this
+  }else if(typeof listener != 'function'){
+    throw 'listener should be a function'
+  }else {
+    let listeners = events[target]
+    if(!listeners || listeners.length <= 0) //如果target对应的listener为[],不做处理
+      return this
+    else {
+      let index
+      for(let i = 0 ; i < listeners.length; i++){
+        if(listeners[i] == listener){//获取对应listener的下标
+          index = i
+          break
+        }
+      }
+      listeners.splice(index, 1)//删除找到的listener
+    }
+  }
+}
+
+Observer.prototype.emit = function (target) {
+  let events = this._events
+  if(!events[target])
+    return this
+  let listeners = events[target]
+  let args = Array.prototype.slice.apply(arguments)
+  args.splice(0, 1)
+  if(typeof listeners == 'function')
+    listeners.apply(this, args)
+  else{
+    for(let i = 0 ; i < listeners.length; i++)
+      listeners[i].apply(this, args)
+  }
+}
+
+Observer.prototype.getListenerLen = function (target) {
+  let listeners = this._events[target]
+  if(!listeners)
+    return 0
+  if(typeof listeners == 'function')
+    return 1
+  return listeners.length
+}
+
+module.exports = Observer
+
+```   
+
+
+```
+//test
+'use strict'
+
+const Observer = require('./observer')
+
+let fn1 = (arg1, arg2) => {
+  console.log('data1: ' + `${arg1}, ${arg2}`)
+}
+
+let fn2 = (arg1, arg2) => {
+  console.log('data2: ' + `${arg1}, ${arg2}`)
+}
+
+let fn3 = (arg1, arg2) => {
+  console.log('data3: ' + `${arg1}, ${arg2}`)
+}
+
+console.log('------start-----')
+
+let observer = new Observer()
+
+observer.addEvent('target1', fn1)//对target1添加3个方法
+observer.addEvent('target1', fn2)
+observer.addEvent('target1', fn3)
+
+observer.addEvent('target2', fn1)//对target2添加3个方法
+observer.addEvent('target2', fn2)
+observer.addEvent('target2', fn3)
+
+observer.emit('target1', 'target1_args1', 'target1_args2') //发出通知
+observer.emit('target2', 'target2_args1', 'target2_args2')
+
+console.log('listener.len: ' + observer.getListenerLen('target1'))//获取listener的数量
+console.log('listener.len: ' + observer.getListenerLen('target2'))
+
+
+console.log('----remove fn2-------')
+
+observer.removeListener('target1', fn2) //删除 target1 中的listener fn2
+
+observer.emit('target1', 'target1_args1', 'target1_args2') //发出通知
+observer.emit('target2', 'target2_args1', 'target2_args2')
+
+console.log('listener.len: ' + observer.getListenerLen('target1')) //获取listener的数量
+console.log('listener.len: ' + observer.getListenerLen('target2'))
+
+console.log('-----remove_all-----')
+
+observer.removeAll() //删除所有listener
+observer.emit('target1', 'target1_args1', 'target1_args2')
+observer.emit('target2', 'target2_args1', 'target2_args2')
+
+console.log('listener.len: ' + observer.getListenerLen('target1'))
+console.log('listener.len: ' + observer.getListenerLen('target2'))
+
+```  
+
+```
+//打印结果 
+------start-----
+data1: target1_args1, target1_args2
+data2: target1_args1, target1_args2
+data3: target1_args1, target1_args2
+data1: target2_args1, target2_args2
+data2: target2_args1, target2_args2
+data3: target2_args1, target2_args2
+listener.len: 3
+listener.len: 3
+----remove fn2-------
+data1: target1_args1, target1_args2
+data3: target1_args1, target1_args2
+data1: target2_args1, target2_args2
+data2: target2_args1, target2_args2
+data3: target2_args1, target2_args2
+listener.len: 2
+listener.len: 3
+-----remove_all-----
+listener.len: 0
+listener.len: 0
+
+Process finished with exit code 0
+```  
+
+## **Node**中的**EventEmitter**  
+上面的**observer**基本上是仿照**node**中的**EventEmitter**实现的。**EventEmitter**是**node**事件驱动的核心。
+
+### **EventEmitter**方法选段   
+
+#### **EventEmitter.prototype.once**  
+
+**once**方法，表示针对该**target**中的listener，只执行一次通知。这个方法在添加**listener**时，对**listner**进行包装。  
+
+```
+function _onceWrap(target, type, listener) {
+  var fired = false; //标志位
+  function g() {//返回一个闭包
+    target.removeListener(type, g);//g是添加到target中的真正的listener,这里当执行通知时，先把listener删掉
+    if (!fired) {//如果未执行过
+      fired = true;
+      listener.apply(target, arguments); //执行listener
+    }
+  }
+  g.listener = listener;
+  return g; 
+}
+
+EventEmitter.prototype.once = function once(type, listener) {
+  if (typeof listener !== 'function')
+    throw new TypeError('"listener" argument must be a function');
+  this.on(type, _onceWrap(this, type, listener));
+  return this;
+};
+
+```   
+
+
+#### **EventEmitter.prototype.on**和**EventEmitter.prototype.addListener**
+
+上述两个**api**调用的都是**_addListener**方法  
+
+```
+/**
+ * 
+ * @param target 即EventEmitter对象
+ * @param type 即监听何种事件
+ * @param listener 待添加的监听器
+ * @param prepend 表示添加到listener数组头部还是尾部
+ * @returns {*}
+ * @private
+ */
+
+function _addListener(target, type, listener, prepend) {
+  var m;
+  var events;
+  var existing;
+
+  if (typeof listener !== 'function') 
+    throw new TypeError('"listener" argument must be a function');
+
+  events = target._events; //获取当前target的events
+  if (!events) { //event不存在先初始化
+    events = target._events = new EventHandlers(); // 相当于 events = Object.create(null)
+    target._eventsCount = 0; 
+  } else {//events存在
+    // To avoid recursion in the case that type === "newListener"! Before
+    // adding it to the listeners, first emit "newListener".
+    if (events.newListener) { //这里为了防止当传入的事件为“newListener”时出行递归调用问题，所以先判断是否存在这个event
+      target.emit('newListener', type,
+                  listener.listener ? listener.listener : listener);
+
+      // Re-assign `events` because a newListener handler could have caused the
+      // this._events to be assigned to a new object
+      events = target._events;
+    }
+    existing = events[type]; //获取这个event的listener
+  }
+
+  if (!existing) { //如果当前event的listener数组不存在，则直接将listener赋值给event,减少array对象的使用
+    // Optimize the case of one listener. Don't need the extra array object.
+    existing = events[type] = listener;
+    ++target._eventsCount;
+  } else { //当event存在时
+    if (typeof existing === 'function') {//判断当前event对应的value是数组还是function
+      // Adding the second element, need to change to array.
+      //如果是function，则需要和即将插入的listener组成一个数组，顺序有prepend觉得
+      existing = events[type] = prepend ? [listener, existing] :
+                                          [existing, listener];
+    } else {//如果event对应的value是数组，则根据prepend决定是unshift还是push
+      // If we've already got an array, just append.
+      if (prepend) {
+        existing.unshift(listener);
+      } else {
+        existing.push(listener);
+      }
+    }
+	
+    // Check for listener leak
+    //这里是在listener加入后，判断listener的个数是否超过EventEmitter最大数量(默认为10)，
+    //因为listener数量过多会导致触发时间后执行速度出现问题，同时也限制listener不能无限加
+    //如果要修改默认数量可以通过调用setMaxlistener方法设置
+    if (!existing.warned) {
+      m = $getMaxListeners(target);
+      if (m && m > 0 && existing.length > m) {
+        existing.warned = true;
+        const w = new Error('Possible EventEmitter memory leak detected. ' +
+                            `${existing.length} ${type} listeners added. ` +
+                            'Use emitter.setMaxListeners() to increase limit');
+        w.name = 'Warning';
+        w.emitter = target;
+        w.type = type;
+        w.count = existing.length;
+        process.emitWarning(w);
+      }
+    }
+  }
+
+  return target;
+}
+```  
