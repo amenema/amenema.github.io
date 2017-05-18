@@ -275,7 +275,7 @@ function _addListener(target, type, listener, prepend) {
 	
     // Check for listener leak
     //这里是在listener加入后，判断listener的个数是否超过EventEmitter最大数量(默认为10)，
-    //因为listener数量过多会导致触发时间后执行速度出现问题，同时也限制listener不能无限加
+    //因为listener可能导致内存泄漏，所以设置了限制
     //如果要修改默认数量可以通过调用setMaxlistener方法设置
     if (!existing.warned) {
       m = $getMaxListeners(target);
@@ -295,4 +295,84 @@ function _addListener(target, type, listener, prepend) {
 
   return target;
 }
-```  
+```   
+
+#### **EventEmitter**对**error**的处理方式   
+
+在程序运行过程中，如果程序报错，**EventEmitter**首先会查看是否存在名为**error**的事件，如果存在，则触发该事件。如果不存在，则抛出异常。所以在使用**EventEmitter**时，一定要同时定义**error**事件，提高程序的健壮性。   
+
+```
+EventEmitter.prototype.emit = function emit(type) {
+  var er, handler, len, args, i, events, domain;
+  var needDomainExit = false;
+  var doError = (type === 'error');//判断是否要触发error事件
+
+  events = this._events;
+  if (events)
+    doError = (doError && events.error == null); //判断是否是要触发error事件，同时error事件的listener不存在
+  else if (!doError)
+    return false;
+
+  domain = this.domain;
+
+  // If there is no 'error' event listener then throw.
+  if (doError) {//要触发的error事件的listener不存在，则直接抛出异常
+    er = arguments[1];
+    if (domain) {
+      if (!er)
+        er = new Error('Uncaught, unspecified "error" event');
+      er.domainEmitter = this;
+      er.domain = domain;
+      er.domainThrown = false;
+      domain.emit('error', er);
+    } else if (er instanceof Error) {
+      throw er; // Unhandled 'error' event
+    } else {
+      // At least give some kind of context to the user
+      var err = new Error('Uncaught, unspecified "error" event. (' + er + ')');
+      err.context = er;
+      throw err;
+    }
+    return false;
+  }
+
+  handler = events[type];
+
+  if (!handler)
+    return false;
+
+  if (domain && this !== process) {
+    domain.enter();
+    needDomainExit = true;
+  }
+
+  var isFn = typeof handler === 'function';
+  len = arguments.length;
+  switch (len) {
+    // fast cases
+    case 1:
+      emitNone(handler, isFn, this);
+      break;
+    case 2:
+      emitOne(handler, isFn, this, arguments[1]);
+      break;
+    case 3:
+      emitTwo(handler, isFn, this, arguments[1], arguments[2]);
+      break;
+    case 4:
+      emitThree(handler, isFn, this, arguments[1], arguments[2], arguments[3]);
+      break;
+    // slower
+    default:
+      args = new Array(len - 1);
+      for (i = 1; i < len; i++)
+        args[i - 1] = arguments[i];
+      emitMany(handler, isFn, this, args);
+  }
+
+  if (needDomainExit)
+    domain.exit();
+
+  return true;
+};
+```
