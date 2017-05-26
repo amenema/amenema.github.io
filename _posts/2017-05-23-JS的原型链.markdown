@@ -1,0 +1,86 @@
+---
+layout:     post
+title:      "JS的原型链"
+subtitle:   " \"JS是如何刨根问底的\""
+date:       2017-05-23 12:00:00
+author:     "Mzx"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+keyword: javascript,js,prototype,__proto__,constructor,原型,原型链,继承
+description: 本文描述了JS基于原型链的继承原理,以及prototype,constructor和__proto__的关系是什么
+tags:
+    - Javascript
+---
+
+
+# **JS**的原型链   
+> 本文阐述了**js**中的**prototype**,**constructor**和__**proto**__之间的关系。
+同时梳理了**js**如何实现继承的。  
+
+## 属性释义    
+
+* **prototype**  
+**prototype**是**JS**中除了通过**bind()**生成的函数外所有**function**都具有的属性，其值为一个对象，对象里包含两个
+值（__**proto**__和**constructor**）。作用是存储要共享的属性和方法。
+* \__**proto**__（[[Prototype]]）  
+__**proto**__是**JS**中每个对象都有的属性，其值指向了该对象构造函数的**prototype**。    
+* **constructor**   
+**constructor**即构造函数，构造函数就是构造函数，其值为函数本身。    
+
+### 实例属性与类属性   
+* 类属性是指绑定到**prototype**上的属性，可以被所有通过该构造函数创建的实例继承。
+* 实例属性是指绑定到**this**上的属性，可通过在构造函数内给对象**init**时绑定或者直接在
+生成对象后绑定。其值是不可共享的。   
+
+## 属性之间的关系   
+![](http://7xwfcm.com2.z0.glb.qiniucdn.com/img/WechatIMG1.jpeg)   
+图片来自 [mollypages.org](http://mollypages.org)
+```
+//定义一个构造函数 
+var Foo = function(){}
+```    
+
+此时[1] **Foo.prototype** = **{constructor: Foo, \_\_proto__:Object.prototype}**   
+即：**Foo.prototype.\_\_proto\__ === Object.prototype**,     
+因为 **Foo.prototype**的值是个**Object**实例,   
+所以[3] **{}.\_\_proto__ = Object.prototype**    
+
+```
+console.log(Foo.prototype.__proto__ === Object.prototype
+console.log(Foo.prototype.constructor === Foo)
+var f1 = new Foo()
+//此时[2] f1.__proto__ === Foo.prototype
+console.log(f1.__proto__ === Foo.prototype)
+```   
+
+Foo是我们自定义的构造函数，JS内置的构造函数也是同样的如**Object**,这里的**Object**是个构造函数   
+**Object.prototype = {constructor: Object, \_\_proto__: null}**   
+
+```
+console.log(Object.prototype.__proto__)
+//null
+```     
+  
+为什么[4] **Object.prototype**.\_\_**proto**\_\_会是null呢？
+**Object.prototype** 不是为 **\{\}** 吗, **{}**.\_\_**proto**__不应该
+是**Object.prototype**吗？而且我们自定义的构造函数就是这个样子呀！
+
+如果设置**Object.prototype.\_\_proto__ = Object.prototype** 那么，当查找一个不存在的属性时，JS
+会从上级原型链去查这个属性，便会出现死循环，所以ES5规定**Object.prototype.\_\_proto__ = null**
+而且**Object.prototype** 指向的对象并不是继承自**Object**,即它不是**Object**的实例。
+
+[原文:15.2.4](http://www.ecma-international.org/ecma-262/5.1/#sec-15.2.4)
+> The value of the [[Prototype]] internal property of the Object prototype object is **null**, the value of the [[Class]] internal property is "Object", and the initial value of the [[Extensible]] internal property is true.     
+
+上面提到**JS**内置的构造函数**Object**,在**JS**中函数也是一种对象，即也存在**Object.\_\_proto__** 那么它指向谁呢？当然是**Function.prototype**了，因为
+**Function**是**js**中所有**function**的构造函数，所以**function Object(){}**是**Function**的一个实例。
+所以[7] **Object.\_\_proto__ === Function.prototype**   
+
+```
+console.log(Object.__proto__ === Function.prototype)
+//true
+```    
+
+**JS**中**Function**也是一个构造函数。
+所以[9] **Function.prototype = {constructor: Function, \_\_proto__: Object.prototype}**，
+[10] **Function.\_\_proto__ = Function.prototype**  
