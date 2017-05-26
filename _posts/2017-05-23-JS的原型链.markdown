@@ -83,4 +83,6 @@ console.log(Object.__proto__ === Function.prototype)
 
 **JS**中**Function**也是一个构造函数。
 所以[9] **Function.prototype = {constructor: Function, \_\_proto__: Object.prototype}**，
-[10] **Function.\_\_proto__ = Function.prototype**  
+[10] **Function.\_\_proto__ = Function.prototype**       
+
+至此便是一个完整的**JS**原型链。
