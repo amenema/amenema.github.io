@@ -83,13 +83,13 @@ RabbitMQ, NodeJS(8.x), 代码猴
 
 'use strict'
 /**
- * Created by menzhongxin on 2017/12/8.
+ * Created by menzhongxin .
  */
 const amqplib = require('amqplib')
 const config = {
-  user: 'qa',
-  password: 'qatest',
-  host: '192.168.4.23',
+  user: 'user',
+  password: 'password',
+  host: '192.168.1.1',
   vhost: 'demo',
   exchange: {
     deadLetterExchange: {
