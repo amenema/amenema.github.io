@@ -6,7 +6,7 @@ date:       2017-03-15 12:00:00
 author:     "Mzx"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-keyword: shadowsocks,centos,tutorial,教程,配置,linux,vpn,科学上网,翻墙,梯子,服务器
+keyword: shadowsocks,centos,tutorial,教程,配置,linux,vpn,服务,科学上网,翻墙,梯子,服务器
 description: 本文描述了如何在centos服务器上搭建shadowsocks服务,进行科学上网。
 tags:
     - OSX
