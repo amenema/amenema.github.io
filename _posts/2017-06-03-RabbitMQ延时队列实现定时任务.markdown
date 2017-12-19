@@ -83,7 +83,7 @@ RabbitMQ, NodeJS(8.x), 代码猴
 
 'use strict'
 /**
- * Created by menzhongxin .
+ * 
  */
 const amqplib = require('amqplib')
 const config = {
